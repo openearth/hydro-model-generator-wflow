@@ -55,7 +55,7 @@ class ModelGeneratorWflow(ModelGenerator):
         """
 
     def get_name(self):
-        return 'WFlow'
+        return 'wflow'
 
 SERVER_URL = "http://hydro-engine.appspot.com"
 
