@@ -72,7 +72,6 @@ def build_model(
     fews_config_path,
     dem_path,
     river_path,
-    region_filter,
 ):
     """Prepare a simple WFlow model, anywhere, based on global datasets."""
 
@@ -145,96 +144,6 @@ def build_model(
     path_dem_in = os.path.join(case, "data/dem/dem.tif")
     dir_lai = os.path.join(case, "data/parameters/clim")
 
-    other_maps = {
-        "sbm": [
-            "FirstZoneCapacity",
-            "FirstZoneKsatVer",
-            "FirstZoneMinCapacity",
-            "InfiltCapSoil",
-            "M",
-            "PathFrac",
-            "WaterFrac",
-            "thetaS",
-            "soil_type",
-            "landuse",
-        ],
-        "hbv": [
-            "BetaSeepage",
-            "Cfmax",
-            "CFR",
-            "FC",
-            "K0",
-            "LP",
-            "Pcorr",
-            "PERC",
-            "SFCF",
-            "TT",
-            "WHC",
-        ],
-    }
-
-    # TODO rename these in hydro-engine
-    newnames = {
-        "FirstZoneKsatVer": "KsatVer",
-        "FirstZoneMinCapacity": "SoilMinThickness",
-        "FirstZoneCapacity": "SoilThickness",
-        "landuse": "wflow_landuse",
-        "soil_type": "wflow_soil",
-    }
-
-    # destination paths
-    path_other_maps = []
-    for param in other_maps[model]:
-        path = os.path.join(
-            case, "data/parameters", newnames.get(param, param) + ".tif"
-        )
-        path_other_maps.append(path)
-
-    for param, path in zip(other_maps[model], path_other_maps):
-        if model == "sbm":
-            download_raster(
-                region, path, param, cellsize_m, crs, region_filter=region_filter
-            )
-        elif model == "hbv":
-            # these are not yet in the earth engine, use local paths
-            if timestep == "hourly":
-                path_staticmaps_global = (
-                    r"p:\1209286-earth2observe\HBV-GLOBAL\staticmaps_hourly"
-                )
-            else:
-                path_staticmaps_global = (
-                    r"p:\1209286-earth2observe\HBV-GLOBAL\staticmaps"
-                )
-            path_in = os.path.join(path_staticmaps_global, param + ".tif")
-
-            # warp the local staticmaps onto model grid
-            wflowtools_lib.warp_like(
-                path_in,
-                path,
-                mask_tif,
-                format="GTiff",
-                co={"dtype": "float32"},
-                resampling=warp.Resampling.med,
-            )
-
-    if model == "sbm":
-        ensure_dir_exists(dir_lai)
-        for m in range(1, 13):
-            mm = str(m).zfill(2)
-            path = os.path.join(dir_lai, "LAI00000.0{}".format(mm))
-            download_raster(
-                region,
-                path,
-                "LAI{}".format(mm),
-                cellsize_m,
-                crs,
-                region_filter=region_filter,
-            )
-    else:
-        # TODO this creates defaults in static_maps, disable this behavior?
-        # or otherwise adapt static_maps for the other models
-        dir_lai = None
-
     # create default folder structure for running wflow
     dir_inmaps = os.path.join(case, "inmaps")
     ensure_dir_exists(dir_inmaps)
@@ -259,50 +168,6 @@ def build_model(
         other_maps=path_other_maps,
         outlets=outlets,
     )
-
-    if fews:
-        # save default state-files in FEWS-config
-        dir_state = os.path.join(case, "outstate")
-        ensure_dir_exists(dir_state)
-        if model == "sbm":
-            state_files = [
-                "CanopyStorage.map",
-                "GlacierStore.map",
-                "ReservoirVolume.map",
-                "SatWaterDepth.map",
-                "Snow.map",
-                "SnowWater.map",
-                "SurfaceRunoff.map",
-                "SurfaceRunoffDyn.map",
-                "TSoil.map",
-                "UStoreLayerDepth_0.map",
-                "WaterLevel.map",
-                "WaterLevelDyn.map",
-            ]
-        elif model == "hbv":
-            state_files = [
-                "DrySnow.map",
-                "FreeWater.map",
-                "InterceptionStorage.map",
-                "LowerZoneStorage.map",
-                "SoilMoisture.map",
-                "SurfaceRunoff.map",
-                "UpperZoneStorage.map",
-                "WaterLevel.map",
-            ]
-        zip_name = name + "_GA_Historical default.zip"
-
-        zip_loc = os.path.join(fews_config_path, "ColdStateFiles", zip_name)
-        path_csf = os.path.dirname(zip_loc)
-        ensure_dir_exists(path_csf)
-
-        mask = pcr.readmap(os.path.join(dir_mask, "mask.map"))
-
-        with zipfile.ZipFile(zip_loc, mode="w") as zf:
-            for state_file in state_files:
-                state_path = os.path.join(dir_state, state_file)
-                pcr.report(pcr.cover(mask, pcr.scalar(0)), state_path)
-                zf.write(state_path, state_file, compress_type=zipfile.ZIP_DEFLATED)
 
 
 def copycase(srccase, dstcase):
