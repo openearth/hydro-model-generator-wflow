@@ -1,20 +1,22 @@
 # Use an official Python runtime as a parent image
 FROM python:2.7-slim
 
-# Set the working directory to /app
-WORKDIR /app
+# Set environment variable
+ENV IMAGENAME /hydro_model_generator_wflow
 
-# Copy the current directory contents into the container at /app
-ADD . /app
+# Set the working directory to /hydro_model_generator_wflow
+WORKDIR ${IMAGENAME}
+
+# Copy the current directory contents into the container at /hydro_model_generator_wflow
+ADD . $IMAGENAME
 
 # Install any needed packages specified in requirements.txt
-RUN pip install --trusted-host pypi.python.org -r requirements.txt
+RUN apt-get update && \
+    pip install --trusted-host pypi.python.org -r requirements.txt
 
-# Make port 80 available to the world outside this container
-# EXPOSE 80
+# apt-get install -y \
+# gcc && \
+# pip install "rasterio==0.36.0" "pyproj==1.9.5.1" --pre --no-binary rasterio,pyproj
 
-# Define environment variable
-ENV NAME World
-
-# Run app.py when the container launches
-CMD ["python", "app.py"]
+# Run hydro_model_generator_wflow.py when the container launches
+CMD ["python", "hydro_model_generator_wflow.py"]
