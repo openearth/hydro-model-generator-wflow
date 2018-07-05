@@ -2,7 +2,7 @@
 FROM python:2.7-stretch
 
 # Set environment variable
-ENV IMAGENAME /hydro_model_generator_wflow
+ENV IMAGENAME /hydro_model_generator_wflow/hydro_model_generator_wflow
 
 # Set the working directory to /hydro_model_generator_wflow
 WORKDIR ${IMAGENAME}
