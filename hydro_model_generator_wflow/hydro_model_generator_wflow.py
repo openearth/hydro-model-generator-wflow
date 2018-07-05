@@ -27,16 +27,6 @@ class ModelGeneratorWflow(ModelGenerator):
     def __init__(self):
         super(ModelGeneratorWflow, self).__init__()
 
-        """
-        Add a template path to a model object
-
-        :return:
-        """
-        # TODO Think about how to retrieve a path for the template. Hard coded?
-        self.template_path = "."
-        # TODO Retrieve template config.ini for an options specified one
-        self.template_config = os.path.join(self.template_path, "config.ini")
-
     def generate_model(self, options):
         """
         Convert all files into a model
@@ -46,13 +36,6 @@ class ModelGeneratorWflow(ModelGenerator):
         """
         #
         pass
-
-    def generate_config_files(self):
-        """
-        Generate one or multiple configuration or setting files for the model
-
-        :return:
-        """
 
     def get_name(self):
         return 'wflow'
