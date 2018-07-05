@@ -1,5 +1,5 @@
 # Use an official Python runtime as a parent image
-FROM python:2.7-slim
+FROM python:2.7-stretch
 
 # Set environment variable
 ENV IMAGENAME /hydro_model_generator_wflow
@@ -11,12 +11,7 @@ WORKDIR ${IMAGENAME}
 ADD . $IMAGENAME
 
 # Install any needed packages specified in requirements.txt
-RUN apt-get update && \
-    pip install --trusted-host pypi.python.org -r requirements.txt
-
-# apt-get install -y \
-# gcc && \
-# pip install "rasterio==0.36.0" "pyproj==1.9.5.1" --pre --no-binary rasterio,pyproj
+RUN pip install --trusted-host pypi.python.org -r requirements.txt
 
 # Run hydro_model_generator_wflow.py when the container launches
 CMD ["python", "hydro_model_generator_wflow.py"]
