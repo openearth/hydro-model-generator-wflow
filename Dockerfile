@@ -14,6 +14,6 @@ ADD . $IMAGENAME
 RUN pip install --trusted-host pypi.python.org -r requirements.txt
 
 # Run hydro_model_generator_wflow.py when the container launches
-CMD ["python", "hydro_model_generator_wflow.py"]
+#CMD ["python", "hydro_model_generator_wflow.py"]
 
 
