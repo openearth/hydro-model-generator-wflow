@@ -16,14 +16,14 @@ from pyproj import Geod
 from rasterio import warp
 from shapely.ops import unary_union
 
-print('hello')
-
-# import hydroengine
-# import pcraster as pcr
+import hydroengine
+import pcraster as pcr
 # from model_generator import ModelGenerator
 # from wflow import create_grid, ogr2ogr, static_maps, wflowtools_lib
 #
 #
+print('hello')
+
 # class WflowModelGenerator(ModelGenerator):
 #     def __init__(self):
 #         """

@@ -7,7 +7,7 @@ import pytest
 
 
 # from hydro_model_generator_wflow import hydro_model_generator_wflow
-
+HOST='http://hydro-model-generator-wflow.appspot.com'
 
 @pytest.fixture
 def response():

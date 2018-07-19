@@ -5,17 +5,32 @@ language: python
 
 python:
     - 2.7
+# keeps the Cloud SDK distribution instantiated between runs
+cache:
+  directories:
+  - "$HOME/google-cloud-sdk/"
+env:
+# Make sure gcloud command is on our PATH and the App Engine SDK is in the Python path
+- GAE_PYTHONPATH=${HOME}/.cache/google_appengine PATH=$PATH:${HOME}/google-cloud-sdk/bin PYTHONPATH=${PYTHONPATH}:${GAE_PYTHONPATH} CLOUDSDK_CORE_DISABLE_PROMPTS=1
 
 services:
     - docker
 
 before_install:
+    # Decrypt the credentials we added to the repo using the key we added with the Travis
+    - if [ ! -d "${GAE_PYTHONPATH}" ]; then
+        python scripts/fetch_gae_sdk.py $(dirname "${GAE_PYTHONPATH}");
+      fi
+    - openssl aes-256-cbc -K $encrypted_4cb330591e04_key -iv $encrypted_4cb330591e04_iv -in credentials.tar.gz.enc -out credentials.tar.gz
     - docker build -t hydroearth/hydro-model-generator-wflow .
     - docker run hydroearth/hydro-model-generator-wflow
 
 ## Command to install dependencies, e.g. pip install -r requirements.txt --use-mirrors
 install:
     - pip install -U tox-travis
+    - gcloud config set project hydro-model-generator-wflow
+    - gcloud -q components update gae-python
+    - gcloud -q preview app deploy app.yaml --promote
 
 ## Command to run tests, e.g. python setup.py test
 script: tox
@@ -23,6 +38,7 @@ script: tox
 deploy:
     provider: script
     script: bash docker_push
+#    Change this to master
     on:
         branch: Docker-implementation
 
