@@ -2,34 +2,31 @@ sudo: required
 language: python
 python:
 - 2.7
-cache:
-  directories:
-  - "$HOME/google-cloud-sdk/"
 services:
 - docker
-# safelist
-branches:
-  only:
-  - master
-  - stable
 before_install:
 - ssh-keygen -q -N "" -f ~/.ssh/google_compute_engine
 - openssl aes-256-cbc -K $encrypted_913d75bf94a2_key -iv $encrypted_913d75bf94a2_iv
   -in credentials.tar.gz.enc -out credentials.tar.gz -d
 - tar -xzf credentials.tar.gz
 - mkdir -p lib
-- gcloud auth activate-service-account --key-file client-secret.json
 - docker build -t hydroearth/hydro-model-generator-wflow .
 - docker run hydroearth/hydro-model-generator-wflow
 install:
-- gcloud config set project hydro-model-generator-wflow
-- gcloud -q components update gae-python
 - pip install -U tox-travis
 script:
-- gcloud -q preview app deploy app.yaml --promote
 - tox
 deploy:
   provider: script
   script: bash docker_push
   on:
     branch: Docker-implementation
+
+  provider: gae
+    # Skip cleanup so api_key.py and vendored dependencies are still there
+    skip_cleanup: true
+    keyfile: client-secret.json
+    project: hydro-model-generator-wflow
+    default: true
+    on:
+      branch: Docker-implementation

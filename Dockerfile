@@ -35,6 +35,8 @@ RUN export PYTHONPATH=/opt/pcraster-4.1.0_x86-64/python:$PYTHONPATH
 # Add application code.
 ADD . /app
 
+EXPOSE 8080
+
 # Instead of using gunicorn directly, we'll use Honcho. Honcho is a python port
 # of the Foreman process manager. $PROCESSES is set in the pod manifest
 # to control which processes Honcho will start.
