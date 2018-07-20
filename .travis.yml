@@ -6,7 +6,7 @@ services:
 - docker
 env:
   global:
-  - secure: 
+  - secure:
 before_install:
 - openssl aes-256-cbc -K $encrypted_e5adff6c0905_key -iv $encrypted_e5adff6c0905_iv
   -in credentials.tar.gz.enc -out credentials.tar.gz -d
