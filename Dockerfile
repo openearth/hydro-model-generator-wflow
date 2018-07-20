@@ -34,12 +34,14 @@ RUN export PYTHONPATH=/opt/pcraster-4.1.0_x86-64/python:$PYTHONPATH
 #RUN git clone 'https://github.com/openstreams/wflow'
 
 # Add application code.
-ADD . /app
+ADD . /hydro_model_generator_wflow
 
 EXPOSE 8080
+
 
 # Instead of using gunicorn directly, we'll use Honcho. Honcho is a python port
 # of the Foreman process manager. $PROCESSES is set in the pod manifest
 # to control which processes Honcho will start.
 #CMD honcho start -f /app/procfile $PROCESSES
+RUN cd /hydro_model_generator_wflow/hydro_model_generator_wflow
 CMD ["python", "hydro_model_generator_wflow.py"]
