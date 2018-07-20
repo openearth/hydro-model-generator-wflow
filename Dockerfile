@@ -42,3 +42,4 @@ EXPOSE 8080
 # of the Foreman process manager. $PROCESSES is set in the pod manifest
 # to control which processes Honcho will start.
 #CMD honcho start -f /app/procfile $PROCESSES
+CMD ["python", "hydro_model_generator_wflow.py"]
