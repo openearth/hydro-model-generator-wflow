@@ -22,6 +22,7 @@ RUN cd /opt
 # Install dependencies.
 ADD requirements.txt requirements.txt
 RUN pip install -r requirements.txt
+RUN pip install honcho
 
 # Install PCRaster
 RUN wget 'http://downloads.sourceforge.net/project/pcraster/PCRaster/4.1.0/pcraster-4.1.0_x86-64.tar.gz'
