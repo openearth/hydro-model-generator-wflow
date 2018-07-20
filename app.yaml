@@ -1,3 +1,2 @@
 runtime: custom
 env: flex
-image: hydroearth/hydro-model-generator-wflow:latest
