@@ -4,28 +4,29 @@ python:
 - 2.7
 services:
 - docker
+env:
+  global:
+  - secure: 
 before_install:
-  - openssl aes-256-cbc -K $encrypted_913d75bf94a2_key -iv $encrypted_913d75bf94a2_iv -in credentials.tar.gz.enc -out credentials.tar.gz -d
-  - tar -xzf credentials.tar.gz
-  - mkdir -p lib
-  - docker build -t hydroearth/hydro-model-generator-wflow .
-  - docker run hydroearth/hydro-model-generator-wflow
+- openssl aes-256-cbc -K $encrypted_e5adff6c0905_key -iv $encrypted_e5adff6c0905_iv
+  -in credentials.tar.gz.enc -out credentials.tar.gz -d
+- tar -xzf credentials.tar.gz
+- mkdir -p lib
+- docker build -t hydroearth/hydro-model-generator-wflow .
+- docker run hydroearth/hydro-model-generator-wflow
 install:
-  - pip install -U tox-travis
+- pip install -U tox-travis
 script:
-  - tox
+- tox
 deploy:
-  # First, deploy docker image to dockerhub
-  - provider: script
-    script: bash docker_push
-    on:
-      branch: Docker-implementation
-  # Then, deploy image to google app engine
-  - provider: gae
-    # Skip cleanup so api_key.py and vendored dependencies are still there
-    skip_cleanup: true
-    keyfile: client-secret.json
-    project: hydro-model-generator-wflow
-    default: true
-    on:
-      branch: Docker-implementation
+- provider: script
+  script: bash docker_push
+  on:
+    branch: Docker-implementation
+- provider: gae
+  skip_cleanup: true
+  keyfile: client-secret.json
+  project: hydro-model-generator-wflow
+  default: true
+  on:
+    branch: Docker-implementation
