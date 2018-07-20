@@ -41,4 +41,4 @@ EXPOSE 8080
 # Instead of using gunicorn directly, we'll use Honcho. Honcho is a python port
 # of the Foreman process manager. $PROCESSES is set in the pod manifest
 # to control which processes Honcho will start.
-CMD honcho start -f /app/procfile $PROCESSES
+#CMD honcho start -f /app/procfile $PROCESSES
