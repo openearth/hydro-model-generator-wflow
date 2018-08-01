@@ -15,7 +15,13 @@ RUN wget 'http://downloads.sourceforge.net/project/pcraster/PCRaster/4.1.0/pcras
 RUN tar xzf pcraster-4.1.0_x86-64.tar.gz
 RUN export PATH=/opt/pcraster-4.1.0_x86-64/bin:$PATH
 RUN export PYTHONPATH=/opt/pcraster-4.1.0_x86-64/python:$PYTHONPATH
-#RUN git clone 'https://github.com/pcraster/pcraster
+#RUN apt install cmake gcc g++ git libboost-all-dev libgdal-dev libncurses5-dev \
+#    libpython-dev libqwt-qt5-dev libxerces-c-dev libxml2 libxml2-utils libxslt1-dev \
+#    python-numpy qtbase5-dev xsdcxx python-docopt
+#RUN mkdir pcraster42rc2 && cd pcraster42rc2
+#RUN git clone --recursive https://github.com/pcraster/pcraster.git
+#RUN mkdir build
+#RUN cd build && cmake -DFERN_BUILD_ALGORITHM:BOOL=TRUE ../pcraster && cmake --build .
 
 # Install wflow
 #RUN git clone 'https://github.com/openstreams/wflow'
