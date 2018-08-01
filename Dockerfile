@@ -20,7 +20,7 @@ RUN export PYTHONPATH=/opt/pcraster-4.1.0_x86-64/python:$PYTHONPATH
 #RUN git clone 'https://github.com/openstreams/wflow'
 
 # Add application code.
-ADD . /app
+ADD . app/
 
 EXPOSE 8080
 

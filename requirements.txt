@@ -6,3 +6,4 @@ Shapely==1.6.*
 pyproj==1.9.*
 rasterio==1.0.*
 hydroengine==0.0.*
+webapp2==2.5.*
