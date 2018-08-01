@@ -8,18 +8,6 @@
 
 # from hydro_model_generator_wflow import hydro_model_generator_wflow
 # HOST='http://hydro-model-generator-wflow.appspot.com'
-import webtest
-
-import main
-
-
-def test_get():
-    app = webtest.TestApp(main.app)
-
-    response = app.get('/')
-
-    assert response.status_int == 200
-    assert response.body == 'Hello, World!'
 #
 # @pytest.fixture
 # def response():

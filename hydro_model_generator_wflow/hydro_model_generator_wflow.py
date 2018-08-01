@@ -35,18 +35,21 @@ import hydroengine
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import webapp2
+from flask import Flask
 
 
-class MainPage(webapp2.RequestHandler):
-    def get(self):
-        self.response.headers['Content-Type'] = 'text/plain'
-        self.response.write('Hello, World!')
+app = Flask(__name__)
 
 
-app = webapp2.WSGIApplication([
-    ('/', MainPage),
-], debug=True)
+@app.route('/')
+def hello():
+    """Return a friendly HTTP greeting."""
+    return 'Hello World!'
+
+
+if __name__ == '__main__':
+    app.run(host='127.0.0.1', port=8080)
+
 # class WflowModelGenerator(ModelGenerator):
 #     def __init__(self):
 #         """
