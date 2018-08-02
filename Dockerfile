@@ -7,7 +7,7 @@ FROM gcr.io/google-appengine/python
 RUN cd /opt
 # Install dependencies.
 ADD requirements.txt requirements.txt
-RUN pip install -r requirements.txt
+RUN pip install -r requirements.txt && pip install gunicorn
 #RUN pip install honcho
 
 # Install PCRaster
