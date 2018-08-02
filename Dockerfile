@@ -4,17 +4,16 @@
 #   https://github.com/GoogleCloudPlatform/python-docker
 FROM gcr.io/google-appengine/python
 
-RUN cd /opt
 # Install dependencies.
 ADD requirements.txt requirements.txt
-RUN pip install -r requirements.txt && pip install gunicorn
+RUN pip install -r requirements.txt
 #RUN pip install honcho
 
 # Install PCRaster
-RUN wget 'http://downloads.sourceforge.net/project/pcraster/PCRaster/4.1.0/pcraster-4.1.0_x86-64.tar.gz'
-RUN tar xzf pcraster-4.1.0_x86-64.tar.gz
-RUN export PATH=/opt/pcraster-4.1.0_x86-64/bin:$PATH
-RUN export PYTHONPATH=/opt/pcraster-4.1.0_x86-64/python:$PYTHONPATH
+#RUN wget 'http://downloads.sourceforge.net/project/pcraster/PCRaster/4.1.0/pcraster-4.1.0_x86-64.tar.gz'
+#RUN tar xzf pcraster-4.1.0_x86-64.tar.gz
+#RUN export PATH=/opt/pcraster-4.1.0_x86-64/bin:$PATH
+#RUN export PYTHONPATH=/opt/pcraster-4.1.0_x86-64/python:$PYTHONPATH
 #RUN apt-get update && apt-get -y install cmake gcc g++ git libboost-all-dev libgdal-dev libncurses5-dev \
 # libpython-dev libqwt-qt5-dev libxerces-c-dev libxml2 libxml2-utils libxslt1-dev \
 # qtbase5-dev xsdcxx python-docopt
