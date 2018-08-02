@@ -15,11 +15,15 @@ import shapely.geometry as sg
 from pyproj import Geod
 from rasterio import warp
 from shapely.ops import unary_union
+from flask import Flask
+from flask import Response
+from flask import request
 
 import hydroengine
 # import pcraster as pcr
 # from model_generator import ModelGenerator
 # from wflow import create_grid, ogr2ogr, static_maps, wflowtools_lib
+
 #
 # Copyright 2016 Google Inc.
 #
@@ -35,20 +39,18 @@ import hydroengine
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from flask import Flask
-
 
 app = Flask(__name__)
 
 
 @app.route('/')
-def hello():
-    """Return a friendly HTTP greeting."""
-    return 'Hello World!'
+def root():
+    return 'Visit <a href="https://github.com/openearth/hydro-model-generator-wflow">https://github.com/openearth/hydro-model-generator-wflow</a> for more information ...'
 
 
 if __name__ == '__main__':
-    app.run(host='127.0.0.1', port=8080)
+    app.run(host='127.0.0.1', port=8080, debug=True)
+
 
 # class WflowModelGenerator(ModelGenerator):
 #     def __init__(self):

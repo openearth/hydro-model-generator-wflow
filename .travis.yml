@@ -13,7 +13,6 @@ before_install:
 - tar -xzf credentials.tar.gz
 - mkdir -p lib
 - docker build -t hydroearth/hydro-model-generator-wflow .
-- docker run hydroearth/hydro-model-generator-wflow
 install:
 - pip install -U tox-travis
 script:
