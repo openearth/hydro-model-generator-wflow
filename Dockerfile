@@ -1,27 +1,21 @@
-# The Google App Engine python runtime is Debian Jessie with Python installed
-# and various os-level packages to allow installation of popular Python
-# libraries. The source is on github at:
-#   https://github.com/GoogleCloudPlatform/python-docker
-FROM gcr.io/google-appengine/python
-
-# Install dependencies.
+FROM ubuntu:18.04
+# Add and install dependencies.
 ADD requirements.txt requirements.txt
-RUN pip install -r requirements.txt
-#RUN pip install honcho
 
-# Install PCRaster
-#RUN wget 'http://downloads.sourceforge.net/project/pcraster/PCRaster/4.1.0/pcraster-4.1.0_x86-64.tar.gz'
-#RUN tar xzf pcraster-4.1.0_x86-64.tar.gz
-#RUN export PATH=/opt/pcraster-4.1.0_x86-64/bin:$PATH
-#RUN export PYTHONPATH=/opt/pcraster-4.1.0_x86-64/python:$PYTHONPATH
-#RUN apt-get update && apt-get -y install cmake gcc g++ git libboost-all-dev libgdal-dev libncurses5-dev \
-# libpython-dev libqwt-qt5-dev libxerces-c-dev libxml2 libxml2-utils libxslt1-dev \
-# qtbase5-dev xsdcxx python-docopt
-#RUN mkdir pcraster42
-#WORKDIR cd pcraster42/
-#RUN git clone --recursive https://github.com/pcraster/pcraster.git && mkdir build
-#WORKDIR build/
-#RUN cmake -DFERN_BUILD_ALGORITHM:BOOL=TRUE ../pcraster && cmake --build .
+RUN apt-get update --fix-missing && apt install -yq python3-minimal python3-pip\
+    && pip3 install --upgrade pip \
+    && pip install -r requirements.txt \
+    && apt install -y cmake gcc g++ git libboost-all-dev libgdal-dev libncurses5-dev \
+    libpython2.7-dev libpython3.6-dev libpython-dev libqwt-qt5-dev libxerces-c-dev \
+    libxml2 libxml2-utils libxslt1-dev python-numpy qtbase5-dev python-docopt wget \
+    && wget http://pcraster.geo.uu.nl/pcraster/4.2.0/pcraster-4.2.0.tar.bz2 \
+    && tar xf pcraster-4.2.0.tar.bz2 && cd pcraster-4.2.0 \
+    && mkdir build && cd build \
+    && cmake -DFERN_BUILD_ALGORITHM:BOOL=TRUE -DCMAKE_INSTALL_PREFIX:PATH=$HOME/pcraster .. \
+    && cmake --build . \
+    && make install
+
+
 # Install wflow
 #RUN git clone 'https://github.com/openstreams/wflow'
 
@@ -30,11 +24,4 @@ ADD . app/
 WORKDIR app/hydro_model_generator_wflow/
 
 EXPOSE 8080
-
-# Instead of using gunicorn directly, we'll use Honcho. Honcho is a python port
-# of the Foreman process manager. $PROCESSES is set in the pod manifest
-# to control which processes Honcho will start.
-#CMD honcho start -f /app/procfile $PROCESSES
-#RUN
-# cd /app/hydro_model_generator_wflow && python hydro_model_generator_wflow.py
-CMD python hydro_model_generator_wflow.py
+CMD gunicorn -b :$PORT hydro_model_generator_wflow:app
