@@ -12,7 +12,7 @@ before_install:
   -in credentials.tar.gz.enc -out credentials.tar.gz -d
 - tar -xzf credentials.tar.gz
 - mkdir -p lib
-- docker build -t hydroearth/hydro-model-generator-wflow .
+- docker build -t eu.gcr.io/hydro-model-generator-wflow/wflow .
 install:
 - pip install -U tox-travis
 script:
