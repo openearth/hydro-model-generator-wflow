@@ -2,6 +2,9 @@
 __pycache__/
 *.py[cod]
 *$py.class
+credentials.tar.gz
+client-secret.json
+api_key.py
 
 # C extensions
 *.so
