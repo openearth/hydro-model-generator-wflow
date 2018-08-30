@@ -12,16 +12,16 @@ before_install:
   -in credentials.tar.gz.enc -out credentials.tar.gz -d
 - tar -xzf credentials.tar.gz
 - mkdir -p lib
-- docker build -t eu.gcr.io/hydro-model-generator-wflow/wflow .
+#- docker build -t eu.gcr.io/hydro-model-generator-wflow/wflow .
 install:
 - pip install -U tox-travis
 script:
 - tox
-deploy:
-- provider: script
-  script: bash docker_push
-  on:
-    branch: Docker-implementation
+#deploy:
+#- provider: script
+#  script: bash docker_push
+#  on:
+#    branch: Docker-implementation
 #- provider: gae
 #  skip_cleanup: true
 #  keyfile: client-secret.json
