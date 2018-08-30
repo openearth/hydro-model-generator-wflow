@@ -20,9 +20,9 @@ from flask import Response
 from flask import request
 
 import hydroengine
-# import pcraster as pcr
+import pcraster as pcr
 # from model_generator import ModelGenerator
-# from wflow import create_grid, ogr2ogr, static_maps, wflowtools_lib
+from wflow import create_grid, ogr2ogr, static_maps, wflowtools_lib
 
 #
 # Copyright 2016 Google Inc.

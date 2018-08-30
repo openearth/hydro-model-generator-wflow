@@ -22,11 +22,11 @@ deploy:
   script: bash docker_push
   on:
     branch: Docker-implementation
-- provider: gae
-  skip_cleanup: true
-  keyfile: client-secret.json
-  project: hydro-model-generator-wflow
-  verbosity: debug
-  default: true
-  on:
-    branch: Docker-implementation
+#- provider: gae
+#  skip_cleanup: true
+#  keyfile: client-secret.json
+#  project: hydro-model-generator-wflow
+#  verbosity: debug
+#  default: true
+#  on:
+#    branch: Docker-implementation

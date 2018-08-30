@@ -14,10 +14,13 @@ RUN apt-get update --fix-missing && apt install -yq python3-minimal python3-pip\
     && cmake -DFERN_BUILD_ALGORITHM:BOOL=TRUE -DCMAKE_INSTALL_PREFIX:PATH=$HOME/pcraster .. \
     && cmake --build . \
     && make install
-
-
 # Install wflow
-#RUN git clone 'https://github.com/openstreams/wflow'
+RUN git clone --recursive 'https://github.com/openstreams/wflow' \
+    && cd wflow-py && python setup.py install
+ENV PYTHONPATH "${PYTONPATH}:$HOME/pcraster/python"
+ENV PATH "${PATH}:$HOME/pcraster/bin"
+RUN export PYTHONPATH && export PATH
+RUN pip install psq
 
 # Add application code.
 ADD . app/
