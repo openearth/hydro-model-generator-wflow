@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/hydro-model-builder-generator-wflow.iml" filepath="$PROJECT_DIR$/.idea/hydro-model-builder-generator-wflow.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/hydro_model_generator_wflow.iml" filepath="$PROJECT_DIR$/.idea/hydro_model_generator_wflow.iml" />
     </modules>
   </component>
 </project>
