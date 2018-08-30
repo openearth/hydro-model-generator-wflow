@@ -6,6 +6,8 @@ import os
 import shutil
 import zipfile
 from math import sqrt
+import subprocess
+import shutil
 
 import fiona
 import geojson
@@ -17,7 +19,7 @@ from pyproj import Geod
 from rasterio import warp
 from shapely.ops import unary_union
 import isodate
-
+from pathlib import Path
 import pcraster as pcr
 from wflow import create_grid, ogr2ogr, static_maps, wflowtools_lib
 import hydroengine
@@ -25,12 +27,15 @@ from hydro_model_builder.model_generator import ModelGenerator
 
 def getpath(general_options, var):
     engine = general_options["hydro-engine"]["datasets"]
-    local = general_options["local"]["datasets"]
+    if "local" in general_options:
+        local = general_options["local"]["datasets"]
+    else:
+        local = []
     # assumes variable is only defined once
     longlist = engine + local
     for d in longlist:
         if d["variable"] == var:
-            return d["variable"]
+            return d["path"]
     raise ValueError(f"Variable {var} not found in input")
 
 
@@ -48,18 +53,16 @@ class ModelGeneratorWflow(ModelGenerator):
         """
         #
         print(options)
-        dem_path = getpath(general_options, "dem")
-        river_path = getpath(general_options, "river")
+
         build_model(
-            geojson_path,
-            cellsize,
+            general_options["region"],
+            options["cellsize"],
             options["concept"],
-            timestep,
+            options["timestep"],
             options["case"]["name"],
             options["case"]["template"],
             options["case"]["path"],
-            dem_path,
-            river_path,
+            general_options,
         )
 
     def get_name(self):
@@ -77,12 +80,15 @@ def build_model(
     name,
     case_template,
     case_path,
-    dem_path,
-    river_path,
+    general_options,
 ):
     """Prepare a simple WFlow model, anywhere, based on global datasets."""
 
     timestep =isodate.parse_duration(timestep_iso)
+    dem_path = getpath(general_options, "dem")
+    river_path = getpath(general_options, "river")
+    path_catchment = getpath(general_options, "catchments")
+    dir_lai = str(Path(getpath(general_options, "LAI01")).parent)
 
     # fill in the dependent defaults
     if name is None:
@@ -99,22 +105,6 @@ def build_model(
 
     # assumes it is in decimal degrees, see Geod
     case = os.path.join(case_path, name)
-    path_catchment = os.path.join(case, "data/catchments/catchments.geojson")
-
-    region = hydro_engine_geometry(geojson_path, region_filter)
-
-    # get the centroid of the region, such that we have a point for unit conversion
-    centroid = sg.shape(region).centroid
-    x, y = centroid.x, centroid.y
-
-    filter_upstream_gt = 1000
-    crs = "EPSG:4326"
-
-    g = Geod(ellps="WGS84")
-    # convert to meters in the center of the grid
-    # Earth Engine expects meters
-    _, _, crossdist_m = g.inv(x, y, x + cellsize, y + cellsize)
-    cellsize_m = sqrt(0.5 * crossdist_m ** 2)
 
     # start by making case an exact copy of the template
     copycase(case_template, case)
@@ -127,22 +117,27 @@ def build_model(
     # create grid
     path_log = "wtools_create_grid.log"
     dir_mask = os.path.join(case, "mask")
+    Path(dir_mask).mkdir(parents=True, exist_ok=True)
+    # TODO get from data
     projection = "EPSG:4326"
 
-    download_catchments(
-        region, path_catchment, geojson_path, region_filter=region_filter
-    )
     create_grid_extent = path_catchment
-
-    create_grid.main(
-        path_log,
-        dir_mask,
-        create_grid_extent,
-        projection,
-        cellsize,
-        locationid=name,
-        snap=True,
-    )
+    mask_tif = os.path.join(dir_mask, "mask.tif")
+    mask_map = os.path.join(dir_mask, "mask.map")
+    # make asc to get a PRJ which GDAL is not adding to the map
+    mask_asc = os.path.join(dir_mask, "mask.asc")
+    shutil.copy2(dem_path, mask_tif)
+    subprocess.call(["gdal_translate", "-of", "PCRaster", mask_tif, mask_map])
+    subprocess.call(["gdal_translate", "-of", "AAIGrid", mask_tif, mask_asc])
+    # create_grid.main(
+    #     path_log,
+    #     dir_mask,
+    #     create_grid_extent,
+    #     projection,
+    #     cellsize,
+    #     locationid=name,
+    #     snap=True,
+    # )
     mask_tif = os.path.join(dir_mask, "mask.tif")
 
     with rasterio.open(mask_tif) as ds:
@@ -152,8 +147,6 @@ def build_model(
     dir_dest = os.path.join(case, "staticmaps")
     # use custom inifile, default high res ldd takes too long
     path_inifile = os.path.join(case, "data/staticmaps.ini")
-    path_dem_in = os.path.join(case, "data/dem/dem.tif")
-    dir_lai = os.path.join(case, "data/parameters/clim")
 
     # create default folder structure for running wflow
     dir_inmaps = os.path.join(case, "inmaps")
@@ -166,17 +159,17 @@ def build_model(
 
     # this is for coastal catchments only, if it is not coastal and no outlets
     # are found, then it will just be the pit of the ldd
-    outlets = outlets_coords(path_catchment, river_data_path)
+    outlets = outlets_coords(path_catchment, river_path)
 
     static_maps.main(
         dir_mask,
         dir_dest,
         path_inifile,
-        path_dem_in,
-        river_data_path,
+        dem_path,
+        river_path,
         path_catchment,
         lai=dir_lai,
-        other_maps=path_other_maps,
+        other_maps=[],
         outlets=outlets,
     )
 
@@ -193,73 +186,10 @@ def ensure_dir_exists(path_dir):
         os.makedirs(path_dir)
 
 
-def hydro_engine_geometry(path_geojson, region_filter):
-    """Provided a path to a GeoJSON file, check if it is valid,
-    then return its geometry. Hydro-engine currently only accepts
-    geometries, so we need to enforce this here."""
-
-    with open(path_geojson) as f:
-        d = geojson.load(f)
-
-    if not d.is_valid:
-        raise AssertionError(
-            "{} is not a valid GeoJSON file\n{}".format(path_geojson, d.errors())
-        )
-
-    # this needs special casing since we want to be able to specify a
-    # FeatureCollection of catchment polygons, though at the same time make it
-    # compatible with the hydro-engine 1 geometry requirement
-    polytypes = ("Polygon", "MultiPolygon")
-    if region_filter == "region":
-        # these polygon checks should cover all types of GeoJSON
-        if d.type == "FeatureCollection":
-            # this should check all features
-            gtype = d.features[0].geometry.type
-            if gtype not in polytypes:
-                raise ValueError(
-                    "Geometry type in {} is {}, needs to be a polygon".format(
-                        path_geojson, gtype
-                    )
-                )
-            # combine features into 1 geometry
-            polys = []
-            for fcatch in d.features:
-                g = sg.shape(fcatch["geometry"])
-                polys.append(g)
-            # now simplify it to a rectangular polygon
-            bnds = unary_union(polys).bounds
-            geom = sg.mapping(sg.box(*bnds))
-        elif d.type == "Feature":
-            assert d.geometry.type in polytypes
-            geom = d.geometry
-        else:
-            assert d.type in polytypes
-            geom = d
-        # now simplify it to a rectangular polygon
-        bnds = sg.shape(geom).bounds
-        geom = sg.mapping(sg.box(*bnds))
-    else:
-        if d.type == "FeatureCollection":
-            nfeatures = len(d.features)
-            if nfeatures != 1:
-                raise AssertionError(
-                    "Expecting 1 feature in {}, found {}".format(
-                        path_geojson, nfeatures
-                    )
-                )
-            geom = d.features[0].geometry
-        elif d.type == "Feature":
-            geom = d.geometry
-        else:
-            geom = d
-
-    return geom
-
-
-def outlets_coords(path_catchment, river_data_path):
+def outlets_coords(path_catchment, river_path):
     """Get an array of X and list of Y coordinates of the outlets."""
 
-    outlets = find_outlets(path_catchment, river_data_path, max_dist=0.02)
+    outlets = find_outlets(path_catchment, river_path, max_dist=0.02)
     outlets = sg.mapping(outlets)["coordinates"]
 
     outlets_x = np.array([c[0] for c in outlets])
