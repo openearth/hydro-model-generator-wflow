@@ -16,18 +16,30 @@ import shapely.geometry as sg
 from pyproj import Geod
 from rasterio import warp
 from shapely.ops import unary_union
+import isodate
 
 import pcraster as pcr
 from wflow import create_grid, ogr2ogr, static_maps, wflowtools_lib
 import hydroengine
 from hydro_model_builder.model_generator import ModelGenerator
 
+def getpath(general_options, var):
+    engine = general_options["hydro-engine"]["datasets"]
+    local = general_options["local"]["datasets"]
+    # assumes variable is only defined once
+    longlist = engine + local
+    for d in longlist:
+        if d["variable"] == var:
+            return d["variable"]
+    raise ValueError(f"Variable {var} not found in input")
+
+
 
 class ModelGeneratorWflow(ModelGenerator):
     def __init__(self):
         super(ModelGeneratorWflow, self).__init__()
 
-    def generate_model(self, options):
+    def generate_model(self, general_options, options):
         """
         Convert all files into a model
         TODO: implement logic, options will be an instance of ModelGeneratorsOptions class
@@ -35,10 +47,24 @@ class ModelGeneratorWflow(ModelGenerator):
         :return:
         """
         #
-        pass
+        print(options)
+        dem_path = getpath(general_options, "dem")
+        river_path = getpath(general_options, "river")
+        build_model(
+            geojson_path,
+            cellsize,
+            options["concept"],
+            timestep,
+            options["case"]["name"],
+            options["case"]["template"],
+            options["case"]["path"],
+            dem_path,
+            river_path,
+        )
 
     def get_name(self):
-        return 'wflow'
+        return "wflow"
+
 
 SERVER_URL = "http://hydro-engine.appspot.com"
 
@@ -47,16 +73,16 @@ def build_model(
     geojson_path,
     cellsize,
     model,
-    timestep,
+    timestep_iso,
     name,
     case_template,
     case_path,
-    fews,
-    fews_config_path,
     dem_path,
     river_path,
 ):
     """Prepare a simple WFlow model, anywhere, based on global datasets."""
+
+    timestep =isodate.parse_duration(timestep_iso)
 
     # fill in the dependent defaults
     if name is None:
@@ -64,10 +90,12 @@ def build_model(
     if case_template is None:
         case_template = "wflow_{}_template".format(model)
     if model == "hbv":
-        if timestep == "hourly":
+        if timestep.total_seconds() == 3600:
             case_template = "wflow_{}_hourly_template".format(model)
-        else:
+        elif timestep.total_seconds() == 86400:
             case_template = "wflow_{}_daily_template".format(model)
+        else:
+            raise ValueError("For HBV only 1 hour or 1 day timesteps are supported")
 
     # assumes it is in decimal degrees, see Geod
     case = os.path.join(case_path, name)
