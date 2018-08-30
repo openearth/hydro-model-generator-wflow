@@ -16,7 +16,7 @@ RUN apt-get update --fix-missing && apt install -yq python3-minimal python3-pip\
     && make install
 # Install wflow
 RUN git clone --recursive 'https://github.com/openstreams/wflow' \
-    && cd wflow-py && python setup.py install
+    && cd wflow/wflow-py && apt-get install -y python-setuptools && python setup.py install
 ENV PYTHONPATH "${PYTONPATH}:$HOME/pcraster/python"
 ENV PATH "${PATH}:$HOME/pcraster/bin"
 RUN export PYTHONPATH && export PATH
