@@ -22,6 +22,26 @@ import pcraster as pcr
 from wflow import create_grid, ogr2ogr, static_maps, wflowtools_lib
 import hydroengine
 from hydro_model_builder.model_generator import ModelGenerator
+from flask import Flask
+
+app = Flask(__name__)
+
+
+@app.route('/')
+def root():
+    return 'Visit <a href="https://github.com/openearth/hydro-model-generator-wflow">https://github.com/openearth/hydro-model-generator-wflow</a> for more information ...'
+
+
+@app.errorhandler(500)
+def server_error(e):
+    # Log the error and stacktrace.
+    logging.exception('An error occurred during a request.')
+    return 'An internal error occurred.', 500
+
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=8080, debug=True)
+
 
 def getpath(general_options, var):
     engine = general_options["hydro-engine"]["datasets"]
