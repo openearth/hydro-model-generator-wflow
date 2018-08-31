@@ -52,8 +52,6 @@ class ModelGeneratorWflow(ModelGenerator):
         :return:
         """
         #
-        print(options)
-
         build_model(
             general_options["region"],
             options["cellsize"],
@@ -127,8 +125,8 @@ def build_model(
     # make asc to get a PRJ which GDAL is not adding to the map
     mask_asc = os.path.join(dir_mask, "mask.asc")
     shutil.copy2(dem_path, mask_tif)
-    subprocess.call(["gdal_translate", "-of", "PCRaster", mask_tif, mask_map])
-    subprocess.call(["gdal_translate", "-of", "AAIGrid", mask_tif, mask_asc])
+    subprocess.call(["gdal_translate", "-ot", "Float32", "-of", "PCRaster", mask_tif, mask_map])
+    subprocess.call(["gdal_translate", "-ot", "Float32", "-of", "AAIGrid", mask_tif, mask_asc])
     # create_grid.main(
     #     path_log,
     #     dir_mask,
