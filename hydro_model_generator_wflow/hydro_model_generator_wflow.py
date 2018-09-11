@@ -4,27 +4,28 @@
 
 import os
 import shutil
+import subprocess
 import zipfile
 from math import sqrt
-import subprocess
-import shutil
+from pathlib import Path
 
 import fiona
 import geojson
+import isodate
 import numpy as np
 import rasterio
 import requests
 import shapely.geometry as sg
+from flask import Flask
 from pyproj import Geod
 from rasterio import warp
 from shapely.ops import unary_union
-import isodate
-from pathlib import Path
-import pcraster as pcr
-from wflow import create_grid, ogr2ogr, static_maps, wflowtools_lib
+
 import hydroengine
 from hydro_model_builder.model_generator import ModelGenerator
-from flask import Flask
+import wflow
+from wflow import static_maps
+import pcraster as pcr
 
 app = Flask(__name__)
 
@@ -147,15 +148,6 @@ def build_model(
     shutil.copy2(dem_path, mask_tif)
     subprocess.call(["gdal_translate", "-ot", "Float32", "-of", "PCRaster", mask_tif, mask_map])
     subprocess.call(["gdal_translate", "-ot", "Float32", "-of", "AAIGrid", mask_tif, mask_asc])
-    # create_grid.main(
-    #     path_log,
-    #     dir_mask,
-    #     create_grid_extent,
-    #     projection,
-    #     cellsize,
-    #     locationid=name,
-    #     snap=True,
-    # )
     mask_tif = os.path.join(dir_mask, "mask.tif")
 
     with rasterio.open(mask_tif) as ds:
