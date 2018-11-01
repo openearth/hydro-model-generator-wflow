@@ -23,8 +23,7 @@ from shapely.ops import unary_union
 
 import hydroengine
 from hydro_model_builder.model_generator import ModelGenerator
-import wflow
-from wflow import static_maps
+import static_maps
 import pcraster as pcr
 
 app = Flask(__name__)
@@ -171,7 +170,7 @@ def build_model(
     # are found, then it will just be the pit of the ldd
     outlets = outlets_coords(path_catchment, river_path)
 
-    static_maps.main(
+    static_maps.static_maps(
         dir_mask,
         dir_dest,
         path_inifile,
