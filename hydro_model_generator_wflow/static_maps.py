@@ -15,7 +15,8 @@ from gdal import gdalconst, ogr, osr
 from rasterio import features
 
 import pcraster as pcr
-import wflowtools_lib as wt
+
+from . import wflowtools_lib as wt
 
 gdal.UseExceptions()
 

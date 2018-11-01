@@ -22,9 +22,10 @@ from rasterio import warp
 from shapely.ops import unary_union
 
 import hydroengine
-from hydro_model_builder.model_generator import ModelGenerator
-import static_maps
 import pcraster as pcr
+from hydro_model_builder.model_generator import ModelGenerator
+
+from . import static_maps
 
 app = Flask(__name__)
 
