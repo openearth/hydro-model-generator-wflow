@@ -14,3 +14,5 @@ pillow==5.2.*
 netCDF4==1.4.*
 pyproj==1.9.*
 isodate==0.6.*
+psq==0.6.*
+google-cloud-pubsub==0.29.*

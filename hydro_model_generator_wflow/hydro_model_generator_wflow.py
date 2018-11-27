@@ -7,6 +7,7 @@ import shutil
 import subprocess
 import zipfile
 from math import sqrt
+import sys
 from pathlib import Path
 
 import fiona
@@ -16,34 +17,19 @@ import numpy as np
 import rasterio
 import requests
 import shapely.geometry as sg
-from flask import Flask
 from pyproj import Geod
 from rasterio import warp
 from shapely.ops import unary_union
 
 import hydroengine
 import pcraster as pcr
-from hydro_model_builder.model_generator import ModelGenerator
+# from hydro_model_builder.model_generator import ModelGenerator
 
-from . import static_maps
+# sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__) ) ) )
+# from . \
+import static_maps
+# from .static_maps import *
 
-app = Flask(__name__)
-
-
-@app.route('/')
-def root():
-    return 'Visit <a href="https://github.com/openearth/hydro-model-generator-wflow">https://github.com/openearth/hydro-model-generator-wflow</a> for more information ...'
-
-
-@app.errorhandler(500)
-def server_error(e):
-    # Log the error and stacktrace.
-    logging.exception('An error occurred during a request.')
-    return 'An internal error occurred.', 500
-
-
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=8080, debug=True)
 
 
 def getpath(general_options, var):
@@ -59,9 +45,7 @@ def getpath(general_options, var):
             return d["path"]
     raise ValueError(f"Variable {var} not found in input")
 
-
-
-class ModelGeneratorWflow(ModelGenerator):
+class ModelGeneratorWflow():
     def __init__(self):
         super(ModelGeneratorWflow, self).__init__()
 

@@ -16,7 +16,9 @@ from rasterio import features
 
 import pcraster as pcr
 
-from . import wflowtools_lib as wt
+# sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__) ) ) )
+# from . import wflowtools_lib as wt
+import wflowtools_lib as wt
 
 gdal.UseExceptions()
 
