@@ -9,6 +9,7 @@ import zipfile
 from math import sqrt
 import sys
 from pathlib import Path
+import logging
 
 import fiona
 import geojson
@@ -28,8 +29,9 @@ import pcraster as pcr
 # sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__) ) ) )
 # from . \
 import static_maps
-# from .static_maps import *
 
+
+# from .static_maps import *
 
 
 def getpath(general_options, var):
@@ -44,6 +46,7 @@ def getpath(general_options, var):
         if d["variable"] == var:
             return d["path"]
     raise ValueError(f"Variable {var} not found in input")
+
 
 class ModelGeneratorWflow():
     def __init__(self):
@@ -87,7 +90,7 @@ def build_model(
 ):
     """Prepare a simple WFlow model, anywhere, based on global datasets."""
 
-    timestep =isodate.parse_duration(timestep_iso)
+    timestep = isodate.parse_duration(timestep_iso)
     dem_path = getpath(general_options, "dem")
     river_path = getpath(general_options, "river")
     path_catchment = getpath(general_options, "catchments")

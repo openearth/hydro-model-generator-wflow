@@ -1,6 +1,8 @@
 FROM ubuntu:18.04
 # Add and install dependencies.
 ADD requirements.txt requirements.txt
+# Add application code.
+ADD . app/
 
 # Install PCRaster
 RUN apt-get update && apt-get install -y python3.6 python3-pip \
@@ -23,25 +25,21 @@ RUN apt-get update && apt-get install gdal-bin
 # python3-gdal python3-numpy
 RUN git clone 'https://github.com/openstreams/wflow' \
     && cd wflow && pip3 install -e .
-# apt-get install -y python-setuptools && export LC_ALL=C.UTF-8 && export LANG=C.UTF-8 && python3 setup.py install
 
 # Install hydro-earth
 RUN cd ../.. && git clone --recursive 'https://github.com/openearth/hydro-earth' \
     && cd hydro-earth && python3 setup.py install  && pip3 install -r requirements.txt && cd ..
 
 # Install hydro-engine
-RUN git clone 'https://github.com/openearth/hydro-engine' \
-    && cd hydro-engine && git pull && cd ..
+RUN cd app/hydro_model_generator_wflow && git clone 'https://github.com/openearth/hydro-engine'
 
-RUN export LC_ALL=C.UTF-8 && export LANG=C.UTF-8
-#RUN pip3 install pyyaml
-#ADD templates
+ENV DATASTORE_PROJECT_ID hydro-earth
+# Need to copy over private file
+ENV GOOGLE_APPLICATION_CREDENTIALS=/hydro-earth/hydroearth/config_privatekey.json
 ENV PYTHONPATH $PYTHONPATH:$HOME/pcraster/python
 ENV PATH $PATH:$HOME/pcraster/bin
 ENV MODELTYPE wflow
 ENV LC_ALL C.UTF-8
 ENV LANG C.UTF-8
 
-# Add application code.
-ADD . app/
 WORKDIR app/hydro_model_generator_wflow/

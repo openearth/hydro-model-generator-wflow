@@ -1,5 +1,5 @@
 numpy==1.14.*
-requests==2.18.*
+requests==2.20.*
 Fiona==1.7.*
 geojson==2.3.*
 Shapely==1.6.*
@@ -16,3 +16,4 @@ pyproj==1.9.*
 isodate==0.6.*
 psq==0.6.*
 google-cloud-pubsub==0.29.*
+pyyaml==3.13.*

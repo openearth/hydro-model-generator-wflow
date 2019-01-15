@@ -81,6 +81,8 @@ def zip_model_output(input_dir, output_dir):
     zipf.close()
     return zipf
 
+def delete_output_files
+
 
 def main():
     path = 'wflow_example.yaml'
@@ -99,6 +101,9 @@ def main():
     # output_dir = "{0}-{1}.zip".format(model['type'], model['id'])
 
     zipped_file = zip_model_output(input_dir, output_dir)
+
+    # clean up files not used
+    delete_output_files(input_dir)
 
 
 # hydro_model_builder needs to specify path where templates are,

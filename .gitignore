@@ -3,6 +3,7 @@ __pycache__/
 *.py[cod]
 *$py.class
 credentials.tar.gz
+credentials.tar.gz.enc
 client-secret.json
 api_key.py
 
