@@ -38,7 +38,7 @@ RUN wget http://pcraster.geo.uu.nl/pcraster/4.2.0/pcraster-4.2.0.tar.bz2 \
 # 1. Change open() to io.open()
 # 2. Change "gdal" to "gdal==2.2.3"
 RUN git clone --recursive 'https://github.com/openstreams/wflow' \
-    && cd wflow/wflow \
+    && cd wflow \
     && export CPLUS_INCLUDE_PATH=/usr/include/gdal \
     && export C_INCLUDE_PATH=/usr/include/gdal \
     && python3 setup.py install
