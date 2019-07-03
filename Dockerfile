@@ -20,23 +20,17 @@ RUN apt install -y wget cmake gcc g++ git qtbase5-dev \
        python3-numpy python3-docopt python3-setuptools python3-gdal
 
 # Install pcraster-4.2.0
-RUN wget http://pcraster.geo.uu.nl/pcraster/4.2.0/pcraster-4.2.0.tar.bz2 \
-    && tar xf pcraster-4.2.0.tar.bz2 && cd pcraster-4.2.0 \
-    && mkdir build && cd build \
-    && cmake -DFERN_BUILD_ALGORITHM:BOOL=TRUE -DCMAKE_INSTALL_PREFIX:PATH=/usr/local/pcraster -DPYTHON_EXECUTABLE:FILEPATH=/usr/bin/python3 .. \
-    && cmake --build . \
-    && make install
+COPY ./Deb/pcraster_4.2.0.deb /opt/wflow/
+WORKDIR /opt/wflow
+RUN dpkg -i pcraster_4.2.0.deb
 
-# Install wflow-master@0870392
-# >>
-#   Traceback (most recent call last):
-#   File "setup.py", line 15, in <module>
-#   with open(os.path.join(here, "README.rst"), encoding="utf-8") as f:
-#   TypeError
-#   :
-#   'encoding' is an invalid keyword argument for this function
-# 1. Change open() to io.open()
-# 2. Change "gdal" to "gdal==2.2.3"
+# RUN wget http://pcraster.geo.uu.nl/pcraster/4.2.0/pcraster-4.2.0.tar.bz2 \
+#     && tar xf pcraster-4.2.0.tar.bz2 && cd pcraster-4.2.0 \
+#     && mkdir build && cd build \
+#     && cmake -DFERN_BUILD_ALGORITHM:BOOL=TRUE -DCMAKE_INSTALL_PREFIX:PATH=/usr/local/pcraster -DPYTHON_EXECUTABLE:FILEPATH=/usr/bin/python3 .. \
+#     && cmake --build . \
+#     && make install
+
 RUN git clone --recursive 'https://github.com/openstreams/wflow' \
     && cd wflow \
     && export CPLUS_INCLUDE_PATH=/usr/include/gdal \
