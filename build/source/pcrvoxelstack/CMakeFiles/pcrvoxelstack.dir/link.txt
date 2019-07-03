@@ -1,0 +1,2 @@
+/usr/bin/ar qc ../../bin/libpcrvoxelstack.a  CMakeFiles/pcrvoxelstack.dir/voxelstack_voxelstack.cc.o
+/usr/bin/ranlib ../../bin/libpcrvoxelstack.a

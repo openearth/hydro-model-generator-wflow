@@ -1,0 +1,1301 @@
+and_Result.map: and_Expr1.map and_Expr2.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f and.Result.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=and_Result.png and_Expr1.png and_Expr2.png
+TEST_INPUT_FILES+=and_Expr1.map and_Expr2.map
+or_Result.map: and_Expr1.map and_Expr2.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f or.Result.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=or_Result.png and_Expr1.png and_Expr2.png
+TEST_INPUT_FILES+=and_Expr1.map and_Expr2.map
+xor_Result.map: and_Expr1.map and_Expr2.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f xor.Result.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=xor_Result.png and_Expr1.png and_Expr2.png
+TEST_INPUT_FILES+=and_Expr1.map and_Expr2.map
+not_Result.map: and_Expr1.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f not.Result.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=not_Result.png and_Expr1.png
+TEST_INPUT_FILES+=and_Expr1.map
+ster_Result.map: ster_Expr1.map ster_Expr2.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f ster.Result.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=ster_Result.png ster_Expr1.png ster_Expr2.png
+TEST_INPUT_FILES+=ster_Expr1.map ster_Expr2.map
+sterster_Result.map: sterster_Expr.map sterster_Power.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f sterster.Result.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=sterster_Result.png sterster_Expr.png sterster_Power.png
+TEST_INPUT_FILES+=sterster_Expr.map sterster_Power.map
+minus_Result.map: minus_Expr1.map minus_Expr2.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f minus.Result.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=minus_Result.png minus_Expr1.png minus_Expr2.png
+TEST_INPUT_FILES+=minus_Expr1.map minus_Expr2.map
+plus_Result.map: minus_Expr1.map minus_Expr2.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f plus.Result.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=plus_Result.png minus_Expr1.png minus_Expr2.png
+TEST_INPUT_FILES+=minus_Expr1.map minus_Expr2.map
+slash_Result.map: slash_Expr1.map slash_Expr2.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f slash.Result.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=slash_Result.png slash_Expr1.png slash_Expr2.png
+TEST_INPUT_FILES+=slash_Expr1.map slash_Expr2.map
+abs_Result.map: abs_Expr.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f abs.Result.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=abs_Result.png abs_Expr.png
+TEST_INPUT_FILES+=abs_Expr.map
+accu_Result.map: accu_Ldd.map accu_Material.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f accu.Result.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=accu_Result.png accu_Ldd.png accu_Material.png
+TEST_INPUT_FILES+=accu_Ldd.map accu_Material.map
+accu_Result2.map: accu_Ldd.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f accu.Result2.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=accu_Result2.png accu_Ldd.png
+TEST_INPUT_FILES+=accu_Ldd.map
+accu_Result3.map: accu_Ldd.map accu_MaterialMV.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f accu.Result3.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=accu_Result3.png accu_Ldd.png accu_MaterialMV.png
+TEST_INPUT_FILES+=accu_Ldd.map accu_MaterialMV.map
+accufraction_State1.map accufraction_Flux1.map: accu_Ldd.map accu_Material.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f accufraction.State1.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=accufraction_State1.png accufraction_Flux1.png accu_Ldd.png accu_Material.png
+TEST_INPUT_FILES+=accu_Ldd.map accu_Material.map
+accufraction_State2.map accufraction_Flux2.map: accu_Ldd.map accufraction_Material.map accufraction_TransFra.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f accufraction.State2.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=accufraction_State2.png accufraction_Flux2.png accu_Ldd.png accufraction_Material.png accufraction_TransFra.png
+TEST_INPUT_FILES+=accu_Ldd.map accufraction_Material.map accufraction_TransFra.map
+accucapacity_State1.map accucapacity_Flux1.map: accu_Ldd.map accu_Material.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f accucapacity.State1.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=accucapacity_State1.png accucapacity_Flux1.png accu_Ldd.png accu_Material.png
+TEST_INPUT_FILES+=accu_Ldd.map accu_Material.map
+accucapacity_State2.map accucapacity_Flux2.map: accu_Ldd.map accufraction_Material.map accucapacity_TransCap.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f accucapacity.State2.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=accucapacity_State2.png accucapacity_Flux2.png accu_Ldd.png accufraction_Material.png accucapacity_TransCap.png
+TEST_INPUT_FILES+=accu_Ldd.map accufraction_Material.map accucapacity_TransCap.map
+accuthreshold_State1.map accuthreshold_Flux1.map: accu_Ldd.map accu_Material.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f accuthreshold.State1.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=accuthreshold_State1.png accuthreshold_Flux1.png accu_Ldd.png accu_Material.png
+TEST_INPUT_FILES+=accu_Ldd.map accu_Material.map
+accuthreshold_State2.map accuthreshold_Flux2.map: accu_Ldd.map accufraction_Material.map accuthreshold_TransTH.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f accuthreshold.State2.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=accuthreshold_State2.png accuthreshold_Flux2.png accu_Ldd.png accufraction_Material.png accuthreshold_TransTH.png
+TEST_INPUT_FILES+=accu_Ldd.map accufraction_Material.map accuthreshold_TransTH.map
+accutrigger_State1.map accutrigger_Flux1.map: accu_Ldd.map accu_Material.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f accutrigger.State1.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=accutrigger_State1.png accutrigger_Flux1.png accu_Ldd.png accu_Material.png
+TEST_INPUT_FILES+=accu_Ldd.map accu_Material.map
+accutrigger_State2.map accutrigger_Flux2.map: accu_Ldd.map accufraction_Material.map accuthreshold_TransTH.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f accutrigger.State2.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=accutrigger_State2.png accutrigger_Flux2.png accu_Ldd.png accufraction_Material.png accuthreshold_TransTH.png
+TEST_INPUT_FILES+=accu_Ldd.map accufraction_Material.map accuthreshold_TransTH.map
+accutrigger_State3.map accutrigger_Flux3.map: accu_Ldd.map accufraction_Material.map accuthreshold_TransTHMV.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f accutrigger.State3.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=accutrigger_State3.png accutrigger_Flux3.png accu_Ldd.png accufraction_Material.png accuthreshold_TransTHMV.png
+TEST_INPUT_FILES+=accu_Ldd.map accufraction_Material.map accuthreshold_TransTHMV.map
+accutraveltime_State1.map accutraveltime_Flux1.map: accutraveltime_Ldd.map accutraveltime_Material.map accutraveltime_Velocity.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f accutraveltime.State1.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=accutraveltime_State1.png accutraveltime_Flux1.png accutraveltime_Ldd.png accutraveltime_Material.png accutraveltime_Velocity.png
+TEST_INPUT_FILES+=accutraveltime_Ldd.map accutraveltime_Material.map accutraveltime_Velocity.map
+accutraveltimefractionremoved_Removed1.map: accutraveltime_Ldd.map accutraveltime_Material.map accutraveltime_Velocity.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f accutraveltimefractionremoved.Removed1.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=accutraveltimefractionremoved_Removed1.png accutraveltime_Ldd.png accutraveltime_Material.png accutraveltime_Velocity.png
+TEST_INPUT_FILES+=accutraveltime_Ldd.map accutraveltime_Material.map accutraveltime_Velocity.map
+accutraveltimefraction_State1_1.map accutraveltimefraction_Flux1_1.map accutraveltimefraction_Removed1_1.map: attfTests_Ldd1.map attfTests_Material1_2.map attfTests_Velocity1_1.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f accutraveltimefraction.State1_1.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=accutraveltimefraction_State1_1.png accutraveltimefraction_Flux1_1.png accutraveltimefraction_Removed1_1.png attfTests_Ldd1.png attfTests_Material1_2.png attfTests_Velocity1_1.png
+TEST_INPUT_FILES+=attfTests_Ldd1.map attfTests_Material1_2.map attfTests_Velocity1_1.map
+accutraveltimefraction_State1_2.map accutraveltimefraction_Flux1_2.map accutraveltimefraction_Removed1_2.map: attfTests_Ldd1.map attfTests_Material1_2.map attfTests_Velocity1_2.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f accutraveltimefraction.State1_2.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=accutraveltimefraction_State1_2.png accutraveltimefraction_Flux1_2.png accutraveltimefraction_Removed1_2.png attfTests_Ldd1.png attfTests_Material1_2.png attfTests_Velocity1_2.png
+TEST_INPUT_FILES+=attfTests_Ldd1.map attfTests_Material1_2.map attfTests_Velocity1_2.map
+accutraveltimefraction_State1_3.map accutraveltimefraction_Flux1_3.map accutraveltimefraction_Removed1_3.map: attfTests_Ldd1.map attfTests_Material1_3.map attfTests_Velocity1_3.map attfTests_Fraction1_3.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f accutraveltimefraction.State1_3.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=accutraveltimefraction_State1_3.png accutraveltimefraction_Flux1_3.png accutraveltimefraction_Removed1_3.png attfTests_Ldd1.png attfTests_Material1_3.png attfTests_Velocity1_3.png attfTests_Fraction1_3.png
+TEST_INPUT_FILES+=attfTests_Ldd1.map attfTests_Material1_3.map attfTests_Velocity1_3.map attfTests_Fraction1_3.map
+accutraveltimefraction_State1_4.map accutraveltimefraction_Flux1_4.map accutraveltimefraction_Removed1_4.map: attfTests_Ldd1.map attfTests_Material1_3.map attfTests_Velocity1_4.map attfTests_Fraction1_3.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f accutraveltimefraction.State1_4.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=accutraveltimefraction_State1_4.png accutraveltimefraction_Flux1_4.png accutraveltimefraction_Removed1_4.png attfTests_Ldd1.png attfTests_Material1_3.png attfTests_Velocity1_4.png attfTests_Fraction1_3.png
+TEST_INPUT_FILES+=attfTests_Ldd1.map attfTests_Material1_3.map attfTests_Velocity1_4.map attfTests_Fraction1_3.map
+accutraveltimefraction_State1_5.map accutraveltimefraction_Flux1_5.map accutraveltimefraction_Removed1_5.map: attfTests_Ldd1.map attfTests_Material1_3.map attfTests_Velocity1_5.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f accutraveltimefraction.State1_5.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=accutraveltimefraction_State1_5.png accutraveltimefraction_Flux1_5.png accutraveltimefraction_Removed1_5.png attfTests_Ldd1.png attfTests_Material1_3.png attfTests_Velocity1_5.png
+TEST_INPUT_FILES+=attfTests_Ldd1.map attfTests_Material1_3.map attfTests_Velocity1_5.map
+accutraveltimefraction_State2_1.map accutraveltimefraction_Flux2_1.map accutraveltimefraction_Removed2_1.map: attfTests_Ldd2.map attfTests_Material2_1.map attfTests_Velocity2_1.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f accutraveltimefraction.State2_1.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=accutraveltimefraction_State2_1.png accutraveltimefraction_Flux2_1.png accutraveltimefraction_Removed2_1.png attfTests_Ldd2.png attfTests_Material2_1.png attfTests_Velocity2_1.png
+TEST_INPUT_FILES+=attfTests_Ldd2.map attfTests_Material2_1.map attfTests_Velocity2_1.map
+accutraveltimefraction_State2_2.map accutraveltimefraction_Flux2_2.map accutraveltimefraction_Removed2_2.map: attfTests_Ldd2.map attfTests_Material2_2.map attfTests_Velocity2_2.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f accutraveltimefraction.State2_2.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=accutraveltimefraction_State2_2.png accutraveltimefraction_Flux2_2.png accutraveltimefraction_Removed2_2.png attfTests_Ldd2.png attfTests_Material2_2.png attfTests_Velocity2_2.png
+TEST_INPUT_FILES+=attfTests_Ldd2.map attfTests_Material2_2.map attfTests_Velocity2_2.map
+accutraveltimefraction_State2_3.map accutraveltimefraction_Flux2_3.map accutraveltimefraction_Removed2_3.map: attfTests_Ldd2.map attfTests_Material2_2.map attfTests_Velocity2_3.map attfTests_Fraction2_3.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f accutraveltimefraction.State2_3.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=accutraveltimefraction_State2_3.png accutraveltimefraction_Flux2_3.png accutraveltimefraction_Removed2_3.png attfTests_Ldd2.png attfTests_Material2_2.png attfTests_Velocity2_3.png attfTests_Fraction2_3.png
+TEST_INPUT_FILES+=attfTests_Ldd2.map attfTests_Material2_2.map attfTests_Velocity2_3.map attfTests_Fraction2_3.map
+accutraveltimefraction_State2_4.map accutraveltimefraction_Flux2_4.map accutraveltimefraction_Removed2_4.map: attfTests_Ldd2.map attfTests_Material2_2.map attfTests_Velocity2_4.map attfTests_Fraction2_3.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f accutraveltimefraction.State2_4.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=accutraveltimefraction_State2_4.png accutraveltimefraction_Flux2_4.png accutraveltimefraction_Removed2_4.png attfTests_Ldd2.png attfTests_Material2_2.png attfTests_Velocity2_4.png attfTests_Fraction2_3.png
+TEST_INPUT_FILES+=attfTests_Ldd2.map attfTests_Material2_2.map attfTests_Velocity2_4.map attfTests_Fraction2_3.map
+accutraveltimefraction_State3_1.map accutraveltimefraction_Flux3_1.map accutraveltimefraction_Removed3_1.map: attfTests_Ldd3.map attfTests_Material3_1.map attfTests_Velocity3_1.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f accutraveltimefraction.State3_1.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=accutraveltimefraction_State3_1.png accutraveltimefraction_Flux3_1.png accutraveltimefraction_Removed3_1.png attfTests_Ldd3.png attfTests_Material3_1.png attfTests_Velocity3_1.png
+TEST_INPUT_FILES+=attfTests_Ldd3.map attfTests_Material3_1.map attfTests_Velocity3_1.map
+accutraveltimefraction_State3_2.map accutraveltimefraction_Flux3_2.map accutraveltimefraction_Removed3_2.map: attfTests_Ldd3.map attfTests_Material3_1.map attfTests_Velocity3_2.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f accutraveltimefraction.State3_2.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=accutraveltimefraction_State3_2.png accutraveltimefraction_Flux3_2.png accutraveltimefraction_Removed3_2.png attfTests_Ldd3.png attfTests_Material3_1.png attfTests_Velocity3_2.png
+TEST_INPUT_FILES+=attfTests_Ldd3.map attfTests_Material3_1.map attfTests_Velocity3_2.map
+accutraveltimefraction_State4_1.map accutraveltimefraction_Flux4_1.map accutraveltimefraction_Removed4_1.map: attfTests_Ldd3.map attfTests_Material4_1.map attfTests_Velocity4_1.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f accutraveltimefraction.State4_1.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=accutraveltimefraction_State4_1.png accutraveltimefraction_Flux4_1.png accutraveltimefraction_Removed4_1.png attfTests_Ldd3.png attfTests_Material4_1.png attfTests_Velocity4_1.png
+TEST_INPUT_FILES+=attfTests_Ldd3.map attfTests_Material4_1.map attfTests_Velocity4_1.map
+accutraveltimefraction_State4_2.map accutraveltimefraction_Flux4_2.map accutraveltimefraction_Removed4_2.map: attfTests_Ldd3.map attfTests_Material4_1.map attfTests_Velocity4_2.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f accutraveltimefraction.State4_2.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=accutraveltimefraction_State4_2.png accutraveltimefraction_Flux4_2.png accutraveltimefraction_Removed4_2.png attfTests_Ldd3.png attfTests_Material4_1.png attfTests_Velocity4_2.png
+TEST_INPUT_FILES+=attfTests_Ldd3.map attfTests_Material4_1.map attfTests_Velocity4_2.map
+kinematic_Qnew.map: accu_Ldd.map accufraction_Material.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f kinematic.Qnew.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=kinematic_Qnew.png accu_Ldd.png accufraction_Material.png
+TEST_INPUT_FILES+=accu_Ldd.map accufraction_Material.map
+kinwave_State1.map kinwave_Flux1.map: accu_Ldd.map accufraction_Material.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f kinwave.State1.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=kinwave_State1.png kinwave_Flux1.png accu_Ldd.png accufraction_Material.png
+TEST_INPUT_FILES+=accu_Ldd.map accufraction_Material.map
+dynamicwave_StateChezy.map dynamicwave_FluxChezy.map: dynamicwave_Table.txt accu_Ldd.map accufraction_Material.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f dynamicwave.StateChezy.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=dynamicwave_StateChezy.png dynamicwave_FluxChezy.png dynamicwave_Table.txt accu_Ldd.png accufraction_Material.png
+TEST_INPUT_FILES+=dynamicwave_Table.txt accu_Ldd.map accufraction_Material.map
+dynamicwave_State2Chezy.map dynamicwave_Flux2Chezy.map: dynamicwave_Table.txt dynamicwave_ProfileId2.map accu_Ldd.map dynamicwave_OldState2.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f dynamicwave.State2Chezy.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=dynamicwave_State2Chezy.png dynamicwave_Flux2Chezy.png dynamicwave_Table.txt dynamicwave_ProfileId2.png accu_Ldd.png dynamicwave_OldState2.png
+TEST_INPUT_FILES+=dynamicwave_Table.txt dynamicwave_ProfileId2.map accu_Ldd.map dynamicwave_OldState2.map
+dynamicwave_State3Chezy.map dynamicwave_Flux3Chezy.map: dynamicwave_Table.txt accu_Ldd.map dynamicwave_OldState3.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f dynamicwave.State3Chezy.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=dynamicwave_State3Chezy.png dynamicwave_Flux3Chezy.png dynamicwave_Table.txt accu_Ldd.png dynamicwave_OldState3.png
+TEST_INPUT_FILES+=dynamicwave_Table.txt accu_Ldd.map dynamicwave_OldState3.map
+dynamicwave_StateManning.map dynamicwave_FluxManning.map: dynamicwave_Table.txt accu_Ldd.map accufraction_Material.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f dynamicwave.StateManning.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=dynamicwave_StateManning.png dynamicwave_FluxManning.png dynamicwave_Table.txt accu_Ldd.png accufraction_Material.png
+TEST_INPUT_FILES+=dynamicwave_Table.txt accu_Ldd.map accufraction_Material.map
+dynamicwave_State2Manning.map dynamicwave_Flux2Manning.map: dynamicwave_Table.txt dynamicwave_ProfileId2.map accu_Ldd.map dynamicwave_OldState2.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f dynamicwave.State2Manning.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=dynamicwave_State2Manning.png dynamicwave_Flux2Manning.png dynamicwave_Table.txt dynamicwave_ProfileId2.png accu_Ldd.png dynamicwave_OldState2.png
+TEST_INPUT_FILES+=dynamicwave_Table.txt dynamicwave_ProfileId2.map accu_Ldd.map dynamicwave_OldState2.map
+dynamicwave_State3Manning.map dynamicwave_Flux3Manning.map: dynamicwave_Table.txt accu_Ldd.map dynamicwave_OldState3.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f dynamicwave.State3Manning.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=dynamicwave_State3Manning.png dynamicwave_Flux3Manning.png dynamicwave_Table.txt accu_Ldd.png dynamicwave_OldState3.png
+TEST_INPUT_FILES+=dynamicwave_Table.txt accu_Ldd.map dynamicwave_OldState3.map
+acos_Result.map: acos_Expr.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f acos.Result.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=acos_Result.png acos_Expr.png
+TEST_INPUT_FILES+=acos_Expr.map
+areaarea_Result.map: areaarea_Class.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f areaarea.Result.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=areaarea_Result.png areaarea_Class.png
+TEST_INPUT_FILES+=areaarea_Class.map
+areadiversity_Result.map: areaarea_Class.map areadiversity_Expr.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f areadiversity.Result.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=areadiversity_Result.png areaarea_Class.png areadiversity_Expr.png
+TEST_INPUT_FILES+=areaarea_Class.map areadiversity_Expr.map
+areamajority_Result.map: areaarea_Class.map areamajority_Expr.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f areamajority.Result.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=areamajority_Result.png areaarea_Class.png areamajority_Expr.png
+TEST_INPUT_FILES+=areaarea_Class.map areamajority_Expr.map
+areamaximum_Result.map: areaarea_Class.map areamaximum_Expr.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f areamaximum.Result.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=areamaximum_Result.png areaarea_Class.png areamaximum_Expr.png
+TEST_INPUT_FILES+=areaarea_Class.map areamaximum_Expr.map
+areaminimum_Result.map: areaarea_Class.map areamaximum_Expr.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f areaminimum.Result.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=areaminimum_Result.png areaarea_Class.png areamaximum_Expr.png
+TEST_INPUT_FILES+=areaarea_Class.map areamaximum_Expr.map
+areaaverage_Result.map: areaarea_Class.map areamaximum_Expr.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f areaaverage.Result.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=areaaverage_Result.png areaarea_Class.png areamaximum_Expr.png
+TEST_INPUT_FILES+=areaarea_Class.map areamaximum_Expr.map
+areatotal_Result.map: areaarea_Class.map areamaximum_Expr.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f areatotal.Result.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=areatotal_Result.png areaarea_Class.png areamaximum_Expr.png
+TEST_INPUT_FILES+=areaarea_Class.map areamaximum_Expr.map
+areanormal_Result.map: areaarea_Class.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f areanormal.Result.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=areanormal_Result.png areaarea_Class.png
+TEST_INPUT_FILES+=areaarea_Class.map
+areauniform_Result.map: areaarea_Class.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f areauniform.Result.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=areauniform_Result.png areaarea_Class.png
+TEST_INPUT_FILES+=areaarea_Class.map
+asin_Result.map: asin_Expr.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f asin.Result.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=asin_Result.png asin_Expr.png
+TEST_INPUT_FILES+=asin_Expr.map
+aspect_Result.map: slope_Dem.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f aspect.Result.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=aspect_Result.png slope_Dem.png
+TEST_INPUT_FILES+=slope_Dem.map
+atan_Result.map: atan_Expr.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f atan.Result.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=atan_Result.png atan_Expr.png
+TEST_INPUT_FILES+=atan_Expr.map
+boolean_Result.map: boolean_Expr.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f boolean.Result.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=boolean_Result.png boolean_Expr.png
+TEST_INPUT_FILES+=boolean_Expr.map
+catchment_Result.map: accu_Ldd.map catchment_Points.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f catchment.Result.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=catchment_Result.png accu_Ldd.png catchment_Points.png
+TEST_INPUT_FILES+=accu_Ldd.map catchment_Points.map
+cellarea_Result1.map: cellarea_Expr.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f cellarea.Result1.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=cellarea_Result1.png cellarea_Expr.png
+TEST_INPUT_FILES+=cellarea_Expr.map
+cellarea_Result2.map: cellarea_Expr.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f cellarea.Result2.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=cellarea_Result2.png cellarea_Expr.png
+TEST_INPUT_FILES+=cellarea_Expr.map
+celllength_Result1.map: cellarea_Expr.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f celllength.Result1.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=celllength_Result1.png cellarea_Expr.png
+TEST_INPUT_FILES+=cellarea_Expr.map
+celllength_Result2.map: cellarea_Expr.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f celllength.Result2.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=celllength_Result2.png cellarea_Expr.png
+TEST_INPUT_FILES+=cellarea_Expr.map
+clump_Result1.map: clump_Expr.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f clump.Result1.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=clump_Result1.png clump_Expr.png
+TEST_INPUT_FILES+=clump_Expr.map
+clump_Result2.map: clump_Expr.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f clump.Result2.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=clump_Result2.png clump_Expr.png
+TEST_INPUT_FILES+=clump_Expr.map
+cos_Result.map: cos_Expr.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f cos.Result.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=cos_Result.png cos_Expr.png
+TEST_INPUT_FILES+=cos_Expr.map
+cover_Result1.map: cover_Expr1.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f cover.Result1.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=cover_Result1.png cover_Expr1.png
+TEST_INPUT_FILES+=cover_Expr1.map
+cover_Result2.map: cover_Expr1.map cover_Expr2.map cover_Expr3.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f cover.Result2.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=cover_Result2.png cover_Expr1.png cover_Expr2.png cover_Expr3.png
+TEST_INPUT_FILES+=cover_Expr1.map cover_Expr2.map cover_Expr3.map
+defined_Result.map: defined_Expr.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f defined.Result.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=defined_Result.png defined_Expr.png
+TEST_INPUT_FILES+=defined_Expr.map
+lddcreate_Result1.map: lddcreate_Dem.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f lddcreate.Result1.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=lddcreate_Result1.png lddcreate_Dem.png
+TEST_INPUT_FILES+=lddcreate_Dem.map
+lddcreate_Result2.map: lddcreate_Dem.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f lddcreate.Result2.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=lddcreate_Result2.png lddcreate_Dem.png
+TEST_INPUT_FILES+=lddcreate_Dem.map
+lddcreate_Result3.map: lddcreate_Dem.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f lddcreate.Result3.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=lddcreate_Result3.png lddcreate_Dem.png
+TEST_INPUT_FILES+=lddcreate_Dem.map
+lddcreatedem_Result1.map: lddcreate_Dem.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f lddcreatedem.Result1.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=lddcreatedem_Result1.png lddcreate_Dem.png
+TEST_INPUT_FILES+=lddcreate_Dem.map
+lddcreatedem_Result2.map: lddcreate_Dem.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f lddcreatedem.Result2.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=lddcreatedem_Result2.png lddcreate_Dem.png
+TEST_INPUT_FILES+=lddcreate_Dem.map
+directional_Result1.map: directional_Expr.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f directional.Result1.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=directional_Result1.png directional_Expr.png
+TEST_INPUT_FILES+=directional_Expr.map
+directional_Result2.map: boolean_Expr.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f directional.Result2.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=directional_Result2.png boolean_Expr.png
+TEST_INPUT_FILES+=boolean_Expr.map
+downstream_Result.map: accu_Ldd.map downstream_Expr.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f downstream.Result.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=downstream_Result.png accu_Ldd.png downstream_Expr.png
+TEST_INPUT_FILES+=accu_Ldd.map downstream_Expr.map
+downstreamdist_Result.map: accu_Ldd2.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f downstreamdist.Result.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=downstreamdist_Result.png accu_Ldd2.png
+TEST_INPUT_FILES+=accu_Ldd2.map
+eq_Result.map: eq_Expr1.map eq_Expr2.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f eq.Result.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=eq_Result.png eq_Expr1.png eq_Expr2.png
+TEST_INPUT_FILES+=eq_Expr1.map eq_Expr2.map
+exp_Result.map: exp_Power.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f exp.Result.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=exp_Result.png exp_Power.png
+TEST_INPUT_FILES+=exp_Power.map
+ge_Result.map: eq_Expr1.map eq_Expr2.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f ge.Result.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=ge_Result.png eq_Expr1.png eq_Expr2.png
+TEST_INPUT_FILES+=eq_Expr1.map eq_Expr2.map
+gt_Result.map: eq_Expr1.map eq_Expr2.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f gt.Result.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=gt_Result.png eq_Expr1.png eq_Expr2.png
+TEST_INPUT_FILES+=eq_Expr1.map eq_Expr2.map
+idiv_Result.map: slash_Expr1.map slash_Expr2.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f idiv.Result.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=idiv_Result.png slash_Expr1.png slash_Expr2.png
+TEST_INPUT_FILES+=slash_Expr1.map slash_Expr2.map
+ifthen_Result.map: ifthen_Cond.map ifthen_Expr1.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f ifthen.Result.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=ifthen_Result.png ifthen_Cond.png ifthen_Expr1.png
+TEST_INPUT_FILES+=ifthen_Cond.map ifthen_Expr1.map
+ifthenelse_Result.map: ifthen_Cond.map ifthen_Expr1.map ifthenelse_Expr2.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f ifthenelse.Result.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=ifthenelse_Result.png ifthen_Cond.png ifthen_Expr1.png ifthenelse_Expr2.png
+TEST_INPUT_FILES+=ifthen_Cond.map ifthen_Expr1.map ifthenelse_Expr2.map
+ldd_Result.map: ldd_Expr.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f ldd.Result.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=ldd_Result.png ldd_Expr.png
+TEST_INPUT_FILES+=ldd_Expr.map
+ldddist_Result1.map: accu_Ldd2.map ldddist_Points.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f ldddist.Result1.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=ldddist_Result1.png accu_Ldd2.png ldddist_Points.png
+TEST_INPUT_FILES+=accu_Ldd2.map ldddist_Points.map
+ldddist_Result2.map: accu_Ldd2.map ldddist_Points2.map ldddist_FrictMat.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f ldddist.Result2.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=ldddist_Result2.png accu_Ldd2.png ldddist_Points2.png ldddist_FrictMat.png
+TEST_INPUT_FILES+=accu_Ldd2.map ldddist_Points2.map ldddist_FrictMat.map
+le_Result.map: eq_Expr1.map eq_Expr2.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f le.Result.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=le_Result.png eq_Expr1.png eq_Expr2.png
+TEST_INPUT_FILES+=eq_Expr1.map eq_Expr2.map
+ln_Result.map: ln_Expr.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f ln.Result.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=ln_Result.png ln_Expr.png
+TEST_INPUT_FILES+=ln_Expr.map
+log10_Result.map: log10_Expr.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f log10.Result.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=log10_Result.png log10_Expr.png
+TEST_INPUT_FILES+=log10_Expr.map
+lookup_Result1.map: lookup_Table.txt lookup_Expr1.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f lookup.Result1.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=lookup_Result1.png lookup_Table.txt lookup_Expr1.png
+TEST_INPUT_FILES+=lookup_Table.txt lookup_Expr1.map
+lookup_Result2.map: lookup_Table2.txt lookup_Expr12.map lookup_Expr22.map lookup_Expr32.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f lookup.Result2.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=lookup_Result2.png lookup_Table2.txt lookup_Expr12.png lookup_Expr22.png lookup_Expr32.png
+TEST_INPUT_FILES+=lookup_Table2.txt lookup_Expr12.map lookup_Expr22.map lookup_Expr32.map
+lookup_Result3.map: lookup_Table2.txt lookup_Expr12.map lookup_Expr22.map lookup_Expr32.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f lookup.Result3.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=lookup_Result3.png lookup_Table2.txt lookup_Expr12.png lookup_Expr22.png lookup_Expr32.png
+TEST_INPUT_FILES+=lookup_Table2.txt lookup_Expr12.map lookup_Expr22.map lookup_Expr32.map
+lookup_Result4.map: lookup_Table3.txt lookup_Expr13.map lookup_Expr23.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f lookup.Result4.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=lookup_Result4.png lookup_Table3.txt lookup_Expr13.png lookup_Expr23.png
+TEST_INPUT_FILES+=lookup_Table3.txt lookup_Expr13.map lookup_Expr23.map
+lookuplinear_Result1.map: lookuplinear_Table.txt lookuplinear_Expr.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f lookuplinear.Result1.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=lookuplinear_Result1.png lookuplinear_Table.txt lookuplinear_Expr.png
+TEST_INPUT_FILES+=lookuplinear_Table.txt lookuplinear_Expr.map
+lookuplinear_Result2.map: lookuplinear_Table2.txt lookuplinear_Expr2.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f lookuplinear.Result2.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=lookuplinear_Result2.png lookuplinear_Table2.txt lookuplinear_Expr2.png
+TEST_INPUT_FILES+=lookuplinear_Table2.txt lookuplinear_Expr2.map
+lt_Result.map: eq_Expr1.map eq_Expr2.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f lt.Result.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=lt_Result.png eq_Expr1.png eq_Expr2.png
+TEST_INPUT_FILES+=eq_Expr1.map eq_Expr2.map
+maparea_Result.map: maparea_Expr.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f maparea.Result.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=maparea_Result.png maparea_Expr.png
+TEST_INPUT_FILES+=maparea_Expr.map
+mapmaximum_Result.map: mapmaximum_Expr.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f mapmaximum.Result.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=mapmaximum_Result.png mapmaximum_Expr.png
+TEST_INPUT_FILES+=mapmaximum_Expr.map
+mapminimum_Result.map: mapmaximum_Expr.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f mapminimum.Result.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=mapminimum_Result.png mapmaximum_Expr.png
+TEST_INPUT_FILES+=mapmaximum_Expr.map
+maptotal_Result.map: mapmaximum_Expr.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f maptotal.Result.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=maptotal_Result.png mapmaximum_Expr.png
+TEST_INPUT_FILES+=mapmaximum_Expr.map
+max_Result1.map: max_Expr1.map max_Expr2.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f max.Result1.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=max_Result1.png max_Expr1.png max_Expr2.png
+TEST_INPUT_FILES+=max_Expr1.map max_Expr2.map
+min_Result1.map: max_Expr1.map max_Expr2.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f min.Result1.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=min_Result1.png max_Expr1.png max_Expr2.png
+TEST_INPUT_FILES+=max_Expr1.map max_Expr2.map
+mod_Result.map: slash_Expr1.map slash_Expr2.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f mod.Result.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=mod_Result.png slash_Expr1.png slash_Expr2.png
+TEST_INPUT_FILES+=slash_Expr1.map slash_Expr2.map
+lddmask_Result.map: accu_Ldd.map lddmask_Mask.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f lddmask.Result.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=lddmask_Result.png accu_Ldd.png lddmask_Mask.png
+TEST_INPUT_FILES+=accu_Ldd.map lddmask_Mask.map
+nodirection_Result.map: nodirection_Expr.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f nodirection.Result.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=nodirection_Result.png nodirection_Expr.png
+TEST_INPUT_FILES+=nodirection_Expr.map
+nominal_Result.map: rounddown_Expr.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f nominal.Result.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=nominal_Result.png rounddown_Expr.png
+TEST_INPUT_FILES+=rounddown_Expr.map
+normalnumber_Result.map: cellarea_Expr.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f normalnumber.Result.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=normalnumber_Result.png cellarea_Expr.png
+TEST_INPUT_FILES+=cellarea_Expr.map
+normalfield_Result.map: uniqueid_Expr.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f normalfield.Result.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=normalfield_Result.png uniqueid_Expr.png
+TEST_INPUT_FILES+=uniqueid_Expr.map
+ne_Result.map: eq_Expr1.map eq_Expr2.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f ne.Result.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=ne_Result.png eq_Expr1.png eq_Expr2.png
+TEST_INPUT_FILES+=eq_Expr1.map eq_Expr2.map
+order_Result.map: succ_Expr.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f order.Result.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=order_Result.png succ_Expr.png
+TEST_INPUT_FILES+=succ_Expr.map
+ordinal_Result.map: rounddown_Expr.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f ordinal.Result.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=ordinal_Result.png rounddown_Expr.png
+TEST_INPUT_FILES+=rounddown_Expr.map
+path_Result.map: accu_Ldd.map path_Points.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f path.Result.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=path_Result.png accu_Ldd.png path_Points.png
+TEST_INPUT_FILES+=accu_Ldd.map path_Points.map
+pit_Result.map: accu_Ldd.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f pit.Result.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=pit_Result.png accu_Ldd.png
+TEST_INPUT_FILES+=accu_Ldd.map
+plancurv_Result.map: slope_Dem.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f plancurv.Result.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=plancurv_Result.png slope_Dem.png
+TEST_INPUT_FILES+=slope_Dem.map
+pred_Result1.map: succ_Expr.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f pred.Result1.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=pred_Result1.png succ_Expr.png
+TEST_INPUT_FILES+=succ_Expr.map
+pred_Result2.map: succ_Expr.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f pred.Result2.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=pred_Result2.png succ_Expr.png
+TEST_INPUT_FILES+=succ_Expr.map
+profcurv_Result.map: slope_Dem.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f profcurv.Result.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=profcurv_Result.png slope_Dem.png
+TEST_INPUT_FILES+=slope_Dem.map
+lddrepair_Result.map: lddrepair_Ldd.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f lddrepair.Result.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=lddrepair_Result.png lddrepair_Ldd.png
+TEST_INPUT_FILES+=lddrepair_Ldd.map
+rounddown_Result.map: rounddown_Expr.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f rounddown.Result.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=rounddown_Result.png rounddown_Expr.png
+TEST_INPUT_FILES+=rounddown_Expr.map
+roundoff_Result.map: rounddown_Expr.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f roundoff.Result.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=roundoff_Result.png rounddown_Expr.png
+TEST_INPUT_FILES+=rounddown_Expr.map
+roundup_Result.map: rounddown_Expr.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f roundup.Result.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=roundup_Result.png rounddown_Expr.png
+TEST_INPUT_FILES+=rounddown_Expr.map
+scalar_Result.map: and_Expr1.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f scalar.Result.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=scalar_Result.png and_Expr1.png
+TEST_INPUT_FILES+=and_Expr1.map
+sin_Result.map: sin_Expr.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f sin.Result.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=sin_Result.png sin_Expr.png
+TEST_INPUT_FILES+=sin_Expr.map
+slope_Result.map: slope_Dem.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f slope.Result.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=slope_Result.png slope_Dem.png
+TEST_INPUT_FILES+=slope_Dem.map
+slopelength_Result1.map: accu_Ldd2.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f slopelength.Result1.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=slopelength_Result1.png accu_Ldd2.png
+TEST_INPUT_FILES+=accu_Ldd2.map
+slopelength_Result2.map: accu_Ldd2.map slopelength_FrictMat.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f slopelength.Result2.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=slopelength_Result2.png accu_Ldd2.png slopelength_FrictMat.png
+TEST_INPUT_FILES+=accu_Ldd2.map slopelength_FrictMat.map
+spread_Result1.map: spread_Points.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f spread.Result1.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=spread_Result1.png spread_Points.png
+TEST_INPUT_FILES+=spread_Points.map
+spread_Result2.map: spread_Points2.map spread_Initial2.map spread_FrictMat2.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f spread.Result2.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=spread_Result2.png spread_Points2.png spread_Initial2.png spread_FrictMat2.png
+TEST_INPUT_FILES+=spread_Points2.map spread_Initial2.map spread_FrictMat2.map
+spreadldd_Result1.map: accu_Ldd2.map spreadldd_Points1.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f spreadldd.Result1.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=spreadldd_Result1.png accu_Ldd2.png spreadldd_Points1.png
+TEST_INPUT_FILES+=accu_Ldd2.map spreadldd_Points1.map
+spreadldd_Result2.map: accu_Ldd2.map spreadldd_Points2.map spreadldd_Initial.map spreadldd_FrictMat.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f spreadldd.Result2.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=spreadldd_Result2.png accu_Ldd2.png spreadldd_Points2.png spreadldd_Initial.png spreadldd_FrictMat.png
+TEST_INPUT_FILES+=accu_Ldd2.map spreadldd_Points2.map spreadldd_Initial.map spreadldd_FrictMat.map
+spreadlddzone_Result1.map: accu_Ldd2.map spreadldd_Points1.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f spreadlddzone.Result1.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=spreadlddzone_Result1.png accu_Ldd2.png spreadldd_Points1.png
+TEST_INPUT_FILES+=accu_Ldd2.map spreadldd_Points1.map
+spreadlddzone_Result2.map: accu_Ldd2.map spreadldd_Points2.map spreadldd_Initial.map spreadldd_FrictMat.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f spreadlddzone.Result2.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=spreadlddzone_Result2.png accu_Ldd2.png spreadldd_Points2.png spreadldd_Initial.png spreadldd_FrictMat.png
+TEST_INPUT_FILES+=accu_Ldd2.map spreadldd_Points2.map spreadldd_Initial.map spreadldd_FrictMat.map
+spreadzone_Result1.map: spread_Points.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f spreadzone.Result1.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=spreadzone_Result1.png spread_Points.png
+TEST_INPUT_FILES+=spread_Points.map
+spreadzone_Result2.map: spread_Points2.map spread_Initial2.map spread_FrictMat2.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f spreadzone.Result2.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=spreadzone_Result2.png spread_Points2.png spread_Initial2.png spread_FrictMat2.png
+TEST_INPUT_FILES+=spread_Points2.map spread_Initial2.map spread_FrictMat2.map
+sqr_Result.map: sqr_Expr.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f sqr.Result.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=sqr_Result.png sqr_Expr.png
+TEST_INPUT_FILES+=sqr_Expr.map
+sqrt_Result.map: sqrt_Expr.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f sqrt.Result.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=sqrt_Result.png sqrt_Expr.png
+TEST_INPUT_FILES+=sqrt_Expr.map
+subcatchment_Result.map: accu_Ldd.map catchment_Points.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f subcatchment.Result.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=subcatchment_Result.png accu_Ldd.png catchment_Points.png
+TEST_INPUT_FILES+=accu_Ldd.map catchment_Points.map
+succ_Result1.map: succ_Expr.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f succ.Result1.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=succ_Result1.png succ_Expr.png
+TEST_INPUT_FILES+=succ_Expr.map
+streamorder_Result.map: accu_Ldd.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f streamorder.Result.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=streamorder_Result.png accu_Ldd.png
+TEST_INPUT_FILES+=accu_Ldd.map
+tan_Result.map: tan_Expr.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f tan.Result.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=tan_Result.png tan_Expr.png
+TEST_INPUT_FILES+=tan_Expr.map
+uniformnumber_Result.map: cellarea_Expr.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f uniformnumber.Result.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=uniformnumber_Result.png cellarea_Expr.png
+TEST_INPUT_FILES+=cellarea_Expr.map
+uniformfield_Result.map: uniqueid_Expr.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f uniformfield.Result.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=uniformfield_Result.png uniqueid_Expr.png
+TEST_INPUT_FILES+=uniqueid_Expr.map
+uniqueid_Result.map: uniqueid_Expr.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f uniqueid.Result.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=uniqueid_Result.png uniqueid_Expr.png
+TEST_INPUT_FILES+=uniqueid_Expr.map
+upstream_Result.map: accu_Ldd.map downstream_Expr.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f upstream.Result.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=upstream_Result.png accu_Ldd.png downstream_Expr.png
+TEST_INPUT_FILES+=accu_Ldd.map downstream_Expr.map
+view_Result.map: view_Dem.map view_Points.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f view.Result.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=view_Result.png view_Dem.png view_Points.png
+TEST_INPUT_FILES+=view_Dem.map view_Points.map
+windowaverage_Result1.map: windowaverage_Expr.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f windowaverage.Result1.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=windowaverage_Result1.png windowaverage_Expr.png
+TEST_INPUT_FILES+=windowaverage_Expr.map
+windowaverage_Result2.map: windowaverage_Expr.map windowaverage_WinLen2.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f windowaverage.Result2.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=windowaverage_Result2.png windowaverage_Expr.png windowaverage_WinLen2.png
+TEST_INPUT_FILES+=windowaverage_Expr.map windowaverage_WinLen2.map
+shift_Result.map: windowaverage_Expr.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f shift.Result.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=shift_Result.png windowaverage_Expr.png
+TEST_INPUT_FILES+=windowaverage_Expr.map
+shift_Result2.map: windowaverage_Expr.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f shift.Result2.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=shift_Result2.png windowaverage_Expr.png
+TEST_INPUT_FILES+=windowaverage_Expr.map
+shift0_Result1.map: windowaverage_Expr.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f shift0.Result1.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=shift0_Result1.png windowaverage_Expr.png
+TEST_INPUT_FILES+=windowaverage_Expr.map
+windowdiversity_Result1.map: windowdiversity_Expr.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f windowdiversity.Result1.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=windowdiversity_Result1.png windowdiversity_Expr.png
+TEST_INPUT_FILES+=windowdiversity_Expr.map
+windowdiversity_Result2.map: windowdiversity_Expr.map windowaverage_WinLen2.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f windowdiversity.Result2.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=windowdiversity_Result2.png windowdiversity_Expr.png windowaverage_WinLen2.png
+TEST_INPUT_FILES+=windowdiversity_Expr.map windowaverage_WinLen2.map
+windowhighpass_Result1.map: windowaverage_Expr.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f windowhighpass.Result1.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=windowhighpass_Result1.png windowaverage_Expr.png
+TEST_INPUT_FILES+=windowaverage_Expr.map
+windowhighpass_Result2.map: windowaverage_Expr.map windowaverage_WinLen2.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f windowhighpass.Result2.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=windowhighpass_Result2.png windowaverage_Expr.png windowaverage_WinLen2.png
+TEST_INPUT_FILES+=windowaverage_Expr.map windowaverage_WinLen2.map
+windowmajority_Result1.map: windowmajority_Expr.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f windowmajority.Result1.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=windowmajority_Result1.png windowmajority_Expr.png
+TEST_INPUT_FILES+=windowmajority_Expr.map
+windowmajority_Result2.map: windowmajority_Expr.map windowaverage_WinLen2.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f windowmajority.Result2.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=windowmajority_Result2.png windowmajority_Expr.png windowaverage_WinLen2.png
+TEST_INPUT_FILES+=windowmajority_Expr.map windowaverage_WinLen2.map
+windowmaximum_Result1.map: windowaverage_Expr.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f windowmaximum.Result1.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=windowmaximum_Result1.png windowaverage_Expr.png
+TEST_INPUT_FILES+=windowaverage_Expr.map
+windowmaximum_Result2.map: windowaverage_Expr.map windowaverage_WinLen2.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f windowmaximum.Result2.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=windowmaximum_Result2.png windowaverage_Expr.png windowaverage_WinLen2.png
+TEST_INPUT_FILES+=windowaverage_Expr.map windowaverage_WinLen2.map
+windowminimum_Result1.map: windowaverage_Expr.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f windowminimum.Result1.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=windowminimum_Result1.png windowaverage_Expr.png
+TEST_INPUT_FILES+=windowaverage_Expr.map
+windowminimum_Result2.map: windowaverage_Expr.map windowaverage_WinLen2.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f windowminimum.Result2.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=windowminimum_Result2.png windowaverage_Expr.png windowaverage_WinLen2.png
+TEST_INPUT_FILES+=windowaverage_Expr.map windowaverage_WinLen2.map
+windowtotal_Result1.map: windowaverage_Expr.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f windowtotal.Result1.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=windowtotal_Result1.png windowaverage_Expr.png
+TEST_INPUT_FILES+=windowaverage_Expr.map
+windowtotal_Result2.map: windowaverage_Expr.map windowaverage_WinLen2.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f windowtotal.Result2.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=windowtotal_Result2.png windowaverage_Expr.png windowaverage_WinLen2.png
+TEST_INPUT_FILES+=windowaverage_Expr.map windowaverage_WinLen2.map
+windowdiversity_Result3.map: windowdiversity_Expr2.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f windowdiversity.Result3.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=windowdiversity_Result3.png windowdiversity_Expr2.png
+TEST_INPUT_FILES+=windowdiversity_Expr2.map
+xcoordinate_Result.map: xcoordinate_Expr.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f xcoordinate.Result.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=xcoordinate_Result.png xcoordinate_Expr.png
+TEST_INPUT_FILES+=xcoordinate_Expr.map
+ycoordinate_Result.map: xcoordinate_Expr.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f ycoordinate.Result.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=ycoordinate_Result.png xcoordinate_Expr.png
+TEST_INPUT_FILES+=xcoordinate_Expr.map
+argorderarealimited_Result.map: argorderwithidarealimited_Chances11.map argorderwithidarealimited_Chances12.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f argorderarealimited.Result.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=argorderarealimited_Result.png argorderwithidarealimited_Chances11.png argorderwithidarealimited_Chances12.png
+TEST_INPUT_FILES+=argorderwithidarealimited_Chances11.map argorderwithidarealimited_Chances12.map
+argorderwithidarealimited_Result.map: argorderwithidarealimited_Chances11.map argorderwithidarealimited_Chances12.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f argorderwithidarealimited.Result.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=argorderwithidarealimited_Result.png argorderwithidarealimited_Chances11.png argorderwithidarealimited_Chances12.png
+TEST_INPUT_FILES+=argorderwithidarealimited_Chances11.map argorderwithidarealimited_Chances12.map
+argorderaddarealimited_Result.map: argorderaddarealimited_CurrentId.map argorderaddarealimited_Chances1.map argorderaddarealimited_Chances2.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f argorderaddarealimited.Result.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=argorderaddarealimited_Result.png argorderaddarealimited_CurrentId.png argorderaddarealimited_Chances1.png argorderaddarealimited_Chances2.png
+TEST_INPUT_FILES+=argorderaddarealimited_CurrentId.map argorderaddarealimited_Chances1.map argorderaddarealimited_Chances2.map
+argorder_Result.map: argorderwithidarealimited_Chances11.map argorderwithidarealimited_Chances12.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f argorder.Result.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=argorder_Result.png argorderwithidarealimited_Chances11.png argorderwithidarealimited_Chances12.png
+TEST_INPUT_FILES+=argorderwithidarealimited_Chances11.map argorderwithidarealimited_Chances12.map
+argorderwithid_Result.map: argorderwithidarealimited_Chances11.map argorderwithidarealimited_Chances12.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f argorderwithid.Result.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=argorderwithid_Result.png argorderwithidarealimited_Chances11.png argorderwithidarealimited_Chances12.png
+TEST_INPUT_FILES+=argorderwithidarealimited_Chances11.map argorderwithidarealimited_Chances12.map
+areaorder_Result.map: areaorder_Expr.map areaorder_AreaClass.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f areaorder.Result.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=areaorder_Result.png areaorder_Expr.png areaorder_AreaClass.png
+TEST_INPUT_FILES+=areaorder_Expr.map areaorder_AreaClass.map
+umin_Result.map: abs_Expr.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f umin.Result.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=umin_Result.png abs_Expr.png
+TEST_INPUT_FILES+=abs_Expr.map
+uadd_Result.map: abs_Expr.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f uadd.Result.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=uadd_Result.png abs_Expr.png
+TEST_INPUT_FILES+=abs_Expr.map
+markwhilesum_Result1.map: markwhilesum_Expr1.map cos_Expr.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f markwhilesum.Result1.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=markwhilesum_Result1.png markwhilesum_Expr1.png cos_Expr.png
+TEST_INPUT_FILES+=markwhilesum_Expr1.map cos_Expr.map
+markwhilesum_Result2.map: markwhilesum_Expr1.map cos_Expr.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f markwhilesum.Result2.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=markwhilesum_Result2.png markwhilesum_Expr1.png cos_Expr.png
+TEST_INPUT_FILES+=markwhilesum_Expr1.map cos_Expr.map
+window4total_Result1.map: max_Expr1.map
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f window4total.Result1.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=window4total_Result1.png max_Expr1.png
+TEST_INPUT_FILES+=max_Expr1.map
+muskingum_FlowRate1.txt: muskingum_tssid.map muskingum_Ldd.map muskingum_Inflow.txt
+	export PCROPTIONS=--nothing;/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/bin/pcrcalc -f muskingum.FlowRate1.exec.mod
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=muskingum_FlowRate1.txt muskingum_tssid.png muskingum_Ldd.png muskingum_Inflow.txt
+TEST_INPUT_FILES+=muskingum_tssid.map muskingum_Ldd.map muskingum_Inflow.txt
+asc2map_Result1.map: mapattr_mapclone.map asc2map_AscFile1.txt
+	export PCROPTIONS=--nothing;sh asc2map.Result1.exec.sh
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=asc2map_Result1.png mapattr_mapclone.png asc2map_AscFile1.txt
+TEST_INPUT_FILES+=mapattr_mapclone.map asc2map_AscFile1.txt
+asc2map_Result2.map: mapattr_mapclone.map asc2map_AscFile2.txt
+	export PCROPTIONS=--nothing;sh asc2map.Result2.exec.sh
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=asc2map_Result2.png mapattr_mapclone.png asc2map_AscFile2.txt
+TEST_INPUT_FILES+=mapattr_mapclone.map asc2map_AscFile2.txt
+col2map_Result1.map: mapattr_mapclone.map col2map_ColFile1.txt
+	export PCROPTIONS=--nothing;sh col2map.Result1.exec.sh
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=col2map_Result1.png mapattr_mapclone.png col2map_ColFile1.txt
+TEST_INPUT_FILES+=mapattr_mapclone.map col2map_ColFile1.txt
+col2map_Result2.map: mapattr_mapclone.map col2map_ColFile2.txt
+	export PCROPTIONS=--nothing;sh col2map.Result2.exec.sh
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=col2map_Result2.png mapattr_mapclone.png col2map_ColFile2.txt
+TEST_INPUT_FILES+=mapattr_mapclone.map col2map_ColFile2.txt
+map2asc_AscFile1.txt: map2asc_PCRmap.map
+	export PCROPTIONS=--nothing;sh map2asc.AscFile1.exec.sh
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=map2asc_AscFile1.txt map2asc_PCRmap.png
+TEST_INPUT_FILES+=map2asc_PCRmap.map
+map2asc_AscFile2.txt: map2asc_PCRmap.map
+	export PCROPTIONS=--nothing;sh map2asc.AscFile2.exec.sh
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=map2asc_AscFile2.txt map2asc_PCRmap.png
+TEST_INPUT_FILES+=map2asc_PCRmap.map
+map2asc_AscFile3.txt: map2asc_PCRmap.map
+	export PCROPTIONS=--nothing;sh map2asc.AscFile3.exec.sh
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=map2asc_AscFile3.txt map2asc_PCRmap.png
+TEST_INPUT_FILES+=map2asc_PCRmap.map
+map2col_ColFile1.txt: map2asc_PCRmap.map
+	export PCROPTIONS=--nothing;sh map2col.ColFile1.exec.sh
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=map2col_ColFile1.txt map2asc_PCRmap.png
+TEST_INPUT_FILES+=map2asc_PCRmap.map
+map2col_ColFile2.txt: map2asc_PCRmap.map
+	export PCROPTIONS=--nothing;sh map2col.ColFile2.exec.sh
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=map2col_ColFile2.txt map2asc_PCRmap.png
+TEST_INPUT_FILES+=map2asc_PCRmap.map
+table_Result1.txt: table_PCRmap1.map
+	export PCROPTIONS=--nothing;sh table.Result1.exec.sh
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=table_Result1.txt table_PCRmap1.png
+TEST_INPUT_FILES+=table_PCRmap1.map
+table_Result2.txt: table_PCRmap1.map
+	export PCROPTIONS=--nothing;sh table.Result2.exec.sh
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=table_Result2.txt table_PCRmap1.png
+TEST_INPUT_FILES+=table_PCRmap1.map
+table_Result3.txt: table_PCRmap1.map table_PCRmap2.map table_Input.txt
+	export PCROPTIONS=--nothing;sh table.Result3.exec.sh
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=table_Result3.txt table_PCRmap1.png table_PCRmap2.png table_Input.txt
+TEST_INPUT_FILES+=table_PCRmap1.map table_PCRmap2.map table_Input.txt
+table_Result4.txt: table_Input2.txt
+	export PCROPTIONS=--nothing;sh table.Result4.exec.sh
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=table_Result4.txt table_Input2.txt
+TEST_INPUT_FILES+=table_Input2.txt
+mapattr_mapclone.map: 
+	export PCROPTIONS=--nothing;sh mapattr.mapclone.exec.sh
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=mapattr_mapclone.png
+TEST_INPUT_FILES+=
+mapattr_resample2vier.map: 
+	export PCROPTIONS=--nothing;sh mapattr.resample2vier.exec.sh
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=mapattr_resample2vier.png
+TEST_INPUT_FILES+=
+mapattr_vierresample.map: 
+	export PCROPTIONS=--nothing;sh mapattr.vierresample.exec.sh
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=mapattr_vierresample.png
+TEST_INPUT_FILES+=
+mapattr_vier.map: 
+	export PCROPTIONS=--nothing;sh mapattr.vier.exec.sh
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=mapattr_vier.png
+TEST_INPUT_FILES+=
+mapattr_resample2zes.map: 
+	export PCROPTIONS=--nothing;sh mapattr.resample2zes.exec.sh
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=mapattr_resample2zes.png
+TEST_INPUT_FILES+=
+mapattr_zes.map: 
+	export PCROPTIONS=--nothing;sh mapattr.zes.exec.sh
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=mapattr_zes.png
+TEST_INPUT_FILES+=
+mapattr_2vijf.map: 
+	export PCROPTIONS=--nothing;sh mapattr.2vijf.exec.sh
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=mapattr_2vijf.png
+TEST_INPUT_FILES+=
+mapattr_50vijf.map: 
+	export PCROPTIONS=--nothing;sh mapattr.50vijf.exec.sh
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=mapattr_50vijf.png
+TEST_INPUT_FILES+=
+mapattr_5xoyo1020vijf.map: 
+	export PCROPTIONS=--nothing;sh mapattr.5xoyo1020vijf.exec.sh
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=mapattr_5xoyo1020vijf.png
+TEST_INPUT_FILES+=
+mapattr_vijf.map: 
+	export PCROPTIONS=--nothing;sh mapattr.vijf.exec.sh
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=mapattr_vijf.png
+TEST_INPUT_FILES+=
+mapattr_4bdrie.map: 
+	export PCROPTIONS=--nothing;sh mapattr.4bdrie.exec.sh
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=mapattr_4bdrie.png
+TEST_INPUT_FILES+=
+mapattr_4drie.map: 
+	export PCROPTIONS=--nothing;sh mapattr.4drie.exec.sh
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=mapattr_4drie.png
+TEST_INPUT_FILES+=
+mapattr_drie.map: 
+	export PCROPTIONS=--nothing;sh mapattr.drie.exec.sh
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=mapattr_drie.png
+TEST_INPUT_FILES+=
+mapattr_ttclone.map: 
+	export PCROPTIONS=--nothing;sh mapattr.ttclone.exec.sh
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=mapattr_ttclone.png
+TEST_INPUT_FILES+=
+mapattr_musclone.map: 
+	export PCROPTIONS=--nothing;sh mapattr.musclone.exec.sh
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=mapattr_musclone.png
+TEST_INPUT_FILES+=
+mapattr_mustclone.map: 
+	export PCROPTIONS=--nothing;sh mapattr.mustclone.exec.sh
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=mapattr_mustclone.png
+TEST_INPUT_FILES+=
+mapattr_attfTests.clone1.map: 
+	export PCROPTIONS=--nothing;sh mapattr.attfTests.clone1.exec.sh
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=mapattr_attfTests.clone1.png
+TEST_INPUT_FILES+=
+mapattr_attfTests.clone2.map: 
+	export PCROPTIONS=--nothing;sh mapattr.attfTests.clone2.exec.sh
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=mapattr_attfTests.clone2.png
+TEST_INPUT_FILES+=
+mapattr_attfTests.clone3.map: 
+	export PCROPTIONS=--nothing;sh mapattr.attfTests.clone3.exec.sh
+clean::
+	rm -f 
+MANUAL_INCLUSION_FILES+=mapattr_attfTests.clone3.png
+TEST_INPUT_FILES+=
+CLONES = mapattr_mapclone.map mapattr_resample2vier.map mapattr_vierresample.map mapattr_vier.map mapattr_resample2zes.map mapattr_zes.map mapattr_2vijf.map mapattr_50vijf.map mapattr_5xoyo1020vijf.map mapattr_vijf.map mapattr_4bdrie.map mapattr_4drie.map mapattr_drie.map mapattr_ttclone.map mapattr_musclone.map mapattr_mustclone.map mapattr_attfTests.clone1.map mapattr_attfTests.clone2.map mapattr_attfTests.clone3.map
+
+dynamicwave_Table.txt: make_table.py
+	$(EXEC) "/usr/bin/python3" $< > $@
+clean::
+	rm -f dynamicwave_Table.txt
+MANUAL_INCLUSION_FILES+=dynamicwave_Table.txt
+TEST_INPUT_FILES+=dynamicwave_Table.txt
+
+# sort will remove duplicates
+
+manualInclusionFiles: $(sort ${MANUAL_INCLUSION_FILES})
+
+testInputFiles: $(sort ${TEST_INPUT_FILES})
+
+# depended on all CLONES because the .itxt's have
+# a clone name inside. We just create all CLONES in
+# advance to be sure we can operate
+# VPATH=.
+# EXEC:=/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/environment/script/execWithNativePathArgs.sh
+%.map: %.itxt $(CLONES)
+	"/usr/bin/python3" AscHeader2map.py -i $< -o $@
+#	${EXEC} ${VPATH}/AscHeader2map $< $@
+
+# make png's
+%.png: %.map
+	export PCROPTIONS=--nothing;"/usr/bin/python3" /opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/environment/script/rasterToPNG.py $< $@
+# %.rst: %.txt
+# 	"/usr/bin/python3" txt2rst.py $< $@

@@ -1,0 +1,2 @@
+/usr/bin/ar qc ../../bin/libtab.a  CMakeFiles/tab.dir/cross.c.o CMakeFiles/tab.dir/looktab.c.o CMakeFiles/tab.dir/lookup.c.o CMakeFiles/tab.dir/readltab.c.o CMakeFiles/tab.dir/table.c.o CMakeFiles/tab.dir/writltab.c.o
+/usr/bin/ranlib ../../bin/libtab.a

@@ -1,0 +1,2 @@
+/usr/bin/ar qc ../../bin/libcurr.a  CMakeFiles/curr.dir/currmenu.c.o CMakeFiles/curr.dir/keyfunc.c.o
+/usr/bin/ranlib ../../bin/libcurr.a

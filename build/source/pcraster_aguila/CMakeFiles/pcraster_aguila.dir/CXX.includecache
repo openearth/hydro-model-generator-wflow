@@ -1,0 +1,10 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/build/source/pcraster_aguila/pcraster_aguila_autogen/mocs_compilation.cpp
+

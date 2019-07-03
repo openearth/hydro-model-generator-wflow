@@ -1,0 +1,2 @@
+/usr/bin/ar qc ../../../../../bin/libfern_feature.a  CMakeFiles/fern_feature.dir/core/array.cc.o
+/usr/bin/ranlib ../../../../../bin/libfern_feature.a

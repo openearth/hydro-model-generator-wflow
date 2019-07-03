@@ -1,0 +1,20 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/source/fern/source/tool/malloc_test.cc
+cassert
+-
+malloc.h
+-
+iostream
+-
+memory
+-
+string
+-
+

@@ -1,0 +1,2 @@
+/usr/bin/ar qc ../../bin/libpcrdiscr.a  CMakeFiles/pcrdiscr.dir/discr_block.cc.o CMakeFiles/pcrdiscr.dir/discr_raster.cc.o CMakeFiles/pcrdiscr.dir/discr_voxelstack.cc.o
+/usr/bin/ranlib ../../bin/libpcrdiscr.a

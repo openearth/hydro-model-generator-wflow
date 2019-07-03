@@ -1,0 +1,2 @@
+/usr/bin/ar qc ../../../../../bin/libfern_algorithm.a  CMakeFiles/fern_algorithm.dir/core/index_range.cc.o CMakeFiles/fern_algorithm.dir/core/index_ranges.cc.o CMakeFiles/fern_algorithm.dir/policy/parallel_execution_policy.cc.o
+/usr/bin/ranlib ../../../../../bin/libfern_algorithm.a

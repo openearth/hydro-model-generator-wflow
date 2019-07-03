@@ -1,0 +1,2 @@
+/usr/bin/ar qc ../../bin/libpcrraster.a  CMakeFiles/pcrraster.dir/raster_io.cc.o CMakeFiles/pcrraster.dir/raster_raster.cc.o
+/usr/bin/ranlib ../../bin/libpcrraster.a

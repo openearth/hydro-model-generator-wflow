@@ -1,0 +1,16 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../source/fern/source/fern/feature/core/array.h
+boost/multi_array.hpp
+-
+
+/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/source/fern/source/fern/feature/core/array.cc
+fern/feature/core/array.h
+/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/source/fern/source/fern/feature/core/fern/feature/core/array.h
+

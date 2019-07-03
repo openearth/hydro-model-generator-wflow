@@ -1,0 +1,18 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../source/linkinexamples/example1/../../include/pcrdll.h
+
+../source/linkinexamples/example1/../../include/pcrlinkin.h
+pcrdll.h
+../source/linkinexamples/example1/../../include/pcrdll.h
+
+/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/source/linkinexamples/example1/example1.c
+pcrlinkin.h
+/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/source/linkinexamples/example1/pcrlinkin.h
+

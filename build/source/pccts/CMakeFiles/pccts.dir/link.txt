@@ -1,0 +1,2 @@
+/usr/bin/ar qc ../../bin/libpccts.a  CMakeFiles/pccts.dir/AParser.cpp.o CMakeFiles/pccts.dir/ATokenBuffer.cpp.o
+/usr/bin/ranlib ../../bin/libpccts.a

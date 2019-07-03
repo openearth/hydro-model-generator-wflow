@@ -1,0 +1,2 @@
+/usr/bin/ar qc ../../bin/libutils.a  CMakeFiles/utils.dir/dev_CommandLineApplication.cc.o CMakeFiles/utils.dir/dev_FilesystemUtils.cc.o CMakeFiles/utils.dir/dev_GDalClient.cc.o CMakeFiles/utils.dir/dev_PythonClient.cc.o CMakeFiles/utils.dir/dev_Utils.cc.o CMakeFiles/utils.dir/dev_XercesClient.cc.o
+/usr/bin/ranlib ../../bin/libutils.a

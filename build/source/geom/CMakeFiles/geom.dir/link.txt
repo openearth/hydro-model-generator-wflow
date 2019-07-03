@@ -1,0 +1,2 @@
+/usr/bin/ar qc ../../bin/libgeom.a  CMakeFiles/geom.dir/point.cc.o CMakeFiles/geom.dir/rect.cc.o
+/usr/bin/ranlib ../../bin/libgeom.a

@@ -1,0 +1,26 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../source/linkinexamples/example2/../../include/pcrdll.h
+
+../source/linkinexamples/example2/../../include/pcrlinkin.h
+pcrdll.h
+../source/linkinexamples/example2/../../include/pcrdll.h
+
+../source/rasterformat/sources/pcraster_raster_format/csftypes.h
+cpl_port.h
+../source/rasterformat/sources/pcraster_raster_format/cpl_port.h
+float.h
+-
+
+/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/source/linkinexamples/example2/example2.c
+pcrlinkin.h
+/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/source/linkinexamples/example2/pcrlinkin.h
+csftypes.h
+/opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/source/linkinexamples/example2/csftypes.h
+

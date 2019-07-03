@@ -1,0 +1,2 @@
+/usr/bin/ar qc ../../bin/libmathx.a  CMakeFiles/mathx.dir/dirconv.c.o CMakeFiles/mathx.dir/dirstat.c.o CMakeFiles/mathx.dir/ran.c.o CMakeFiles/mathx.dir/recipes.c.o CMakeFiles/mathx.dir/rint.c.o
+/usr/bin/ranlib ../../bin/libmathx.a

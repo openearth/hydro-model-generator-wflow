@@ -5,7 +5,8 @@
 FROM ubuntu:18.04
 RUN apt-get update --fix-missing
 
-WORKDIR /opt
+ADD . /opt/app/
+WORKDIR /opt/app/
 ADD requirements.txt requirements.txt
 
 RUN apt install -yq python3-minimal python3-pip \
@@ -20,9 +21,9 @@ RUN apt install -y wget cmake gcc g++ git qtbase5-dev \
        python3-numpy python3-docopt python3-setuptools python3-gdal
 
 # Install pcraster-4.2.0
-COPY ./Deb/pcraster_4.2.0.deb /opt/wflow/
-WORKDIR /opt/wflow
-RUN dpkg -i pcraster_4.2.0.deb
+WORKDIR /opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/
+RUN mv /opt/app/build /opt/wflow/pcraster/pcraster-4.2.0/pcraster-4.2.0/
+RUN dpkg -i ./build/pcraster_4.2.0.deb
 
 # RUN wget http://pcraster.geo.uu.nl/pcraster/4.2.0/pcraster-4.2.0.tar.bz2 \
 #     && tar xf pcraster-4.2.0.tar.bz2 && cd pcraster-4.2.0 \
@@ -31,19 +32,20 @@ RUN dpkg -i pcraster_4.2.0.deb
 #     && cmake --build . \
 #     && make install
 
+WORKDIR /opt/app/
 RUN git clone --recursive 'https://github.com/openstreams/wflow' \
     && cd wflow \
     && export CPLUS_INCLUDE_PATH=/usr/include/gdal \
     && export C_INCLUDE_PATH=/usr/include/gdal \
     && python3 setup.py install
 ENV PYTHONPATH "${PYTONPATH}:/usr/local/pcraster/python" 
-ENV PATH "${PATH}:/usr/local/pcraster/bin"
+ENV PATH "${PATH}:/usr/local/pcraster/bin:/usr/local/pcraster"
 # RUN export PYTHONPATH && export PATH
 RUN pip3 install psq
 
 # Add application code.
-ADD . app/
-WORKDIR app/hydro_model_generator_wflow/
+ADD . /opt/app/
+WORKDIR /opt/app/hydro_model_generator_wflow/
 
 EXPOSE 8080
 CMD gunicorn -b :$PORT hydro_model_generator_wflow:app

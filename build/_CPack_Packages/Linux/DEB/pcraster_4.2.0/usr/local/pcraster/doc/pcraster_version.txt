@@ -1,0 +1,3 @@
+PCRaster version  4.2.0
+built on 03.07.2019
+using branch 'master' with commit '56c5450' (56c545091502ac7f541772d1a6877bf5bace226b)

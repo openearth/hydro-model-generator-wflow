@@ -1,0 +1,2 @@
+/usr/bin/ar qc ../../bin/libpcrgeom.a  CMakeFiles/pcrgeom.dir/geom_line.cc.o CMakeFiles/pcrgeom.dir/geom_point.cc.o CMakeFiles/pcrgeom.dir/geom_util.cc.o
+/usr/bin/ranlib ../../bin/libpcrgeom.a

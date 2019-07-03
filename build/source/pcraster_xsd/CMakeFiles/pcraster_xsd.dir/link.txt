@@ -1,0 +1,2 @@
+/usr/bin/ar qc ../../bin/libpcraster_xsd.a  CMakeFiles/pcraster_xsd.dir/pcrxsd_dominput.cc.o CMakeFiles/pcraster_xsd.dir/pcrxsd_StringDomInput.cc.o CMakeFiles/pcraster_xsd.dir/pcrxsd_library.cc.o CMakeFiles/pcraster_xsd.dir/pcrxsd_supportedschema.cc.o CMakeFiles/pcraster_xsd.dir/pcrxsd_utils.cc.o CMakeFiles/pcraster_xsd.dir/commonTypesXSD.cc.o CMakeFiles/pcraster_xsd.dir/AguilaXSD.cc.o CMakeFiles/pcraster_xsd.dir/PCRasterXSD.cc.o
+/usr/bin/ranlib ../../bin/libpcraster_xsd.a
