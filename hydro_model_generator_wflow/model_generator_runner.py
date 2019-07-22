@@ -81,8 +81,8 @@ def zip_model_output(input_dir, output_dir):
     zipf.close()
     return zipf
 
-def delete_output_files
-
+def delete_output_files:
+    pass
 
 def main():
     path = 'wflow_example.yaml'
