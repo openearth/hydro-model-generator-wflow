@@ -1,4 +1,5 @@
 import os
+import shutil
 import yaml
 import zipfile
 import hydroengine
@@ -38,7 +39,7 @@ def get_hydro_data(region, ds):
         # create directory
         Path(ds["path"]).parent.mkdir(parents=True, exist_ok=True)
         if ds["crs"].lower() == "utm":
-            ds["crs"] = f"EPSG:{utm_epsg(region)}"
+            ds["crs"] = "EPSG:{}".format(utm_epsg(region))
         hydroengine.download_raster(
             region,
             ds["path"],
@@ -61,6 +62,7 @@ def general_options(d):
     for ds_override in d["hydro-engine"]["datasets"]:
         ds = defaults.copy()
         ds.update(ds_override)
+        print("=> general_options.hydro-engine.datasets.variable:", ds["variable"])
         if ds["source"] == "earth-engine":
             get_hydro_data(d["region"], ds)
         else:
@@ -76,13 +78,25 @@ def zipdir(path, ziph):
 
 
 def zip_model_output(input_dir, output_dir):
+    if os.path.exists(output_dir):
+        os.remove(output_dir)
+    else:
+        print("Can not delete {}".format(output_dir))
     zipf = zipfile.ZipFile(output_dir, 'w', zipfile.ZIP_DEFLATED)
     zipdir(input_dir, zipf)
     zipf.close()
     return zipf
 
-def delete_output_files:
-    pass
+def delete_output_files(input_dir):
+    shutil.rmtree(input_dir)
+    
+    origfolder = "hydro-engine/"
+    for item in os.listdir(origfolder):
+        if item.endswith(".tif"):
+            os.remove(os.path.join(origfolder, item))
+        if item.endswith(".tfw"):
+            os.remove(os.path.join(origfolder, item))
+    # pass
 
 def main():
     path = 'wflow_example.yaml'
