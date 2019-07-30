@@ -108,6 +108,7 @@ def build_model(
             case_template = "wflow_{}_daily_template".format(model)
         else:
             raise ValueError("For HBV only 1 hour or 1 day timesteps are supported")
+    ensure_dir_exists(case_template)
 
     # assumes it is in decimal degrees, see Geod
     case = os.path.join(case_path, name)
