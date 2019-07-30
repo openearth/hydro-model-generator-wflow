@@ -492,8 +492,8 @@ def static_maps(
         dest_lai = os.path.join(destination, "clim")
         os.makedirs(dest_lai)
         for month in range(12):
-            lai_in = os.path.join(lai, "LAI00000.{:03d}".format(month + 1))
-            lai_out = os.path.join(dest_lai, "LAI00000.{:03d}".format(month + 1))
+            lai_in = os.path.join(lai, "LAI00000.{:03d}.tif".format(month + 1))
+            lai_out = os.path.join(dest_lai, "LAI00000.{:03d}.tif".format(month + 1))
             logger.info(
                 "Resampling vegetation LAI from {:s} to {:s}".format(
                     os.path.abspath(lai_in), os.path.abspath(lai_out)
