@@ -42,14 +42,20 @@ RUN git clone --recursive 'https://github.com/openearth/hydro-earth' \
     && cd hydro-earth && python3 setup.py install && pip3 install -r requirements.txt \
     && cp /hydro-earth/hydroearth/frontend/api_tasks.yaml /usr/local/lib/python3.6/dist-packages/hydroearth-0.1.0-py3.6.egg/hydroearth/frontend/
 
+# Install hydro-engine
+WORKDIR /app/
+RUN git clone 'https://github.com/openearth/hydro-engine' \
+    && cd hydro-engine \
+    && python3 setup.py install
+
 
 # Install wflow
-WORKDIR /app/
+WORKDIR /app/hydro-model-models/
 RUN git clone 'https://github.com/openstreams/wflow' \
     && cd wflow && rm -R examples && pip3 install -e .
 
 # Install imod
-WORKDIR /app/
+WORKDIR /app/hydro-model-models/
 RUN git clone 'https://gitlab.com/deltares/imod/imod-python.git' \
     && cd imod-python && pip3 install -e .
 
@@ -60,23 +66,16 @@ RUN git clone -b refactor --single-branch https://github.com/openearth/hydro-mod
     && cd hydro-model-builder \
     && python3 setup.py install
 
-# Install hydro-model-generator-wflow & hydro-engine
+# Install hydro-model-generator-wflow
 WORKDIR /app/
 RUN git clone -b app-engine-deploy --single-branch https://github.com/openearth/hydro-model-generator-wflow.git \
     && cp /app/hydro-model-generator-wflow/hydro_model_generator_wflow/wflow_example.yaml /app/ \
-    && cp -r /app/hydro-model-generator-wflow/hydro_model_generator_wflow/wflow_sbm_template /app/ \
-    && cd /app/hydro-model-generator-wflow/hydro_model_generator_wflow \
-    && git clone 'https://github.com/openearth/hydro-engine'
+    && cp -r /app/hydro-model-generator-wflow/hydro_model_generator_wflow/wflow_sbm_template /app/
 
-# Install hydro-model-generator-imod & hydro-engine
+# Install hydro-model-generator-imod
 WORKDIR /app/
 RUN git clone -b app-engine-deploy --single-branch https://github.com/openearth/hydro-model-generator-imod.git \
-    && cp /app/hydro-model-generator-imod/hydro_model_generator_imod/imodflow_onlyHE.yaml /app/ \
-    && cd /app/hydro-model-generator-imod/hydro_model_generator_imod \
-    && git clone 'https://github.com/openearth/hydro-engine'
-
-
-RUN mkdir /app/hydro-engine
+    && cp /app/hydro-model-generator-imod/hydro_model_generator_imod/imodflow_onlyHE.yaml /app/
 
 # Need to copy over private file
 # ENV MODELTYPE wflow
@@ -86,7 +85,13 @@ ENV GOOGLE_APPLICATION_CREDENTIALS=/hydro-earth/hydroearth/config_privatekey.jso
 ENV LC_ALL C.UTF-8
 ENV LANG C.UTF-8
 
-RUN rm -f /usr/bin/python && ln -s /usr/bin/python3 /usr/bin/python
+RUN rm -rf /usr/bin/python /app/backup /app/hydro-model-builder /app/hydro-engine/* \
+    && ln -s /usr/bin/python3 /usr/bin/python
+
+#     && mkdir generator engine \
+#     && mv /app/hydro-model-generator-wflow/hydro_model_generator_wflow /app/generator/wflow \
+#     && mv /app/hydro-model-generator-imod/hydro_model_generator_imod /app/generator/imod \
+
 
 WORKDIR /app/
 CMD [ "psqworker", "hydroearth.tasks.worker.models_queue" ]
