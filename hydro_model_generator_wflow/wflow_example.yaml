@@ -15,85 +15,85 @@ hydro-engine:
         -
             function: get-catchments
             variable: catchments
-            path: hydro-engine/catchments.geojson
+            path: hydro-engine/wflow/catchments.geojson
         -
             variable: dem
-            path: hydro-engine/dem.tif
+            path: hydro-engine/wflow/dem.tif
         -
             # start of staticmaps
             variable: FirstZoneCapacity
-            path: hydro-engine/SoilThickness.tif
+            path: hydro-engine/wflow/SoilThickness.tif
             cell_size: 500.0
         -
             variable: FirstZoneKsatVer
-            path: hydro-engine/KsatVer.tif
+            path: hydro-engine/wflow/KsatVer.tif
         -
             variable: FirstZoneMinCapacity
-            path: hydro-engine/SoilMinThickness.tif
+            path: hydro-engine/wflow/SoilMinThickness.tif
         -
             variable: InfiltCapSoil
-            path: hydro-engine/InfiltCapSoil.tif
+            path: hydro-engine/wflow/InfiltCapSoil.tif
         -
             variable: M
-            path: hydro-engine/M.tif
+            path: hydro-engine/wflow/M.tif
         -
             variable: PathFrac
-            path: hydro-engine/PathFrac.tif
+            path: hydro-engine/wflow/PathFrac.tif
         -
             variable: WaterFrac
-            path: hydro-engine/WaterFrac.tif
+            path: hydro-engine/wflow/WaterFrac.tif
         -
             variable: thetaS
-            path: hydro-engine/thetaS.tif
+            path: hydro-engine/wflow/thetaS.tif
         -
             variable: soil_type
-            path: hydro-engine/wflow_soil.tif
+            path: hydro-engine/wflow/wflow_soil.tif
         -
             variable: landuse
-            path: hydro-engine/wflow_landuse.tif
+            path: hydro-engine/wflow/wflow_landuse.tif
         -
             variable: LAI01
-            path: hydro-engine/LAI00000.001.tif
+            path: hydro-engine/wflow/LAI00000.001.tif
         -
             variable: LAI02
-            path: hydro-engine/LAI00000.002.tif
+            path: hydro-engine/wflow/LAI00000.002.tif
         -
             variable: LAI03
-            path: hydro-engine/LAI00000.003.tif
+            path: hydro-engine/wflow/LAI00000.003.tif
         -
             variable: LAI04
-            path: hydro-engine/LAI00000.004.tif
+            path: hydro-engine/wflow/LAI00000.004.tif
         -
             variable: LAI05
-            path: hydro-engine/LAI00000.005.tif
+            path: hydro-engine/wflow/LAI00000.005.tif
         -
             variable: LAI06
-            path: hydro-engine/LAI00000.006.tif
+            path: hydro-engine/wflow/LAI00000.006.tif
         -
             variable: LAI07
-            path: hydro-engine/LAI00000.007.tif
+            path: hydro-engine/wflow/LAI00000.007.tif
         -
             variable: LAI08
-            path: hydro-engine/LAI00000.008.tif
+            path: hydro-engine/wflow/LAI00000.008.tif
         -
             variable: LAI09
-            path: hydro-engine/LAI00000.009.tif
+            path: hydro-engine/wflow/LAI00000.009.tif
         -
             variable: LAI10
-            path: hydro-engine/LAI00000.010.tif
+            path: hydro-engine/wflow/LAI00000.010.tif
         -
             variable: LAI11
-            path: hydro-engine/LAI00000.011.tif
+            path: hydro-engine/wflow/LAI00000.011.tif
         -
             variable: LAI12
-            path: hydro-engine/LAI00000.012.tif
+            path: hydro-engine/wflow/LAI00000.012.tif
         -
             function: get-rivers
             variable: river
             source: earth-engine # earth-engine|local
             # the path can be either a file path for a local source,
             # or the id of a dataset on the hydro-engine
-            path: hydro-engine/river.geojson
+            path: hydro-engine/wflow/river.geojson
             crs: UTM
             cell_size: 1000.0
             region_filter: catchments-upstream
@@ -111,7 +111,7 @@ hydro-engine:
 #     datasets:
 #         -
 #             variable: notyetimplt
-#             path: hydro-engine/dem.tif
+#             path: hydro-engine/wflow/dem.tif
 # region should support either a path or an inline geojson
 # region: koblenz.geojson
 # region: {"type":"Point","coordinates":[-347.79,45.014]}
