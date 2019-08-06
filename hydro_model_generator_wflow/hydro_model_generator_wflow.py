@@ -34,7 +34,7 @@ import static_maps
 # from .static_maps import *
 
 
-def getpath(general_options, var):
+def getpath(general_options, var, model_id):
     engine = general_options["hydro-engine"]["datasets"]
     if "local" in general_options:
         local = general_options["local"]["datasets"]
@@ -44,7 +44,7 @@ def getpath(general_options, var):
     longlist = engine + local
     for d in longlist:
         if d["variable"] == var:
-            return d["path"]
+            return os.path.join(Path(d["path"]).parent, model_id, Path(d["path"]).name)
     raise ValueError(f"Variable {var} not found in input")
 
 
@@ -52,7 +52,7 @@ class ModelGeneratorWflow():
     def __init__(self):
         super(ModelGeneratorWflow, self).__init__()
 
-    def generate_model(self, general_options, options):
+    def generate_model(self, general_options, options, model_id):
         """
         Convert all files into a model
         TODO: implement logic, options will be an instance of ModelGeneratorsOptions class
@@ -68,7 +68,7 @@ class ModelGeneratorWflow():
             options["case"]["name"],
             options["case"]["template"],
             options["case"]["path"],
-            general_options,
+            general_options, model_id
         )
 
     def get_name(self):
@@ -86,19 +86,19 @@ def build_model(
     name,
     case_template,
     case_path,
-    general_options,
+    general_options, model_id
 ):
     """Prepare a simple WFlow model, anywhere, based on global datasets."""
 
     timestep = isodate.parse_duration(timestep_iso)
-    dem_path = getpath(general_options, "dem")
-    river_path = getpath(general_options, "river")
-    path_catchment = getpath(general_options, "catchments")
-    dir_lai = str(Path(getpath(general_options, "LAI01")).parent)
+    dem_path = getpath(general_options, "dem", model_id)
+    river_path = getpath(general_options, "river", model_id)
+    path_catchment = getpath(general_options, "catchments", model_id)
+    dir_lai = str(Path(getpath(general_options, "LAI01", model_id)).parent)
 
     # fill in the dependent defaults
     if name is None:
-        name = "wflow_{}_case".format(model)
+        name = "wflow_{}_case-{}".format(model, model_id)
     if case_template is None:
         case_template = "wflow_{}_template".format(model)
     if model == "hbv":
@@ -108,10 +108,10 @@ def build_model(
             case_template = "wflow_{}_daily_template".format(model)
         else:
             raise ValueError("For HBV only 1 hour or 1 day timesteps are supported")
-    ensure_dir_exists(case_template)
 
     # assumes it is in decimal degrees, see Geod
-    case = os.path.join(case_path, name)
+    case_template = os.path.join("/app/hydro-generator/template", case_template)
+    case = os.path.join("/app/hydro-input", name)
 
     # start by making case an exact copy of the template
     copycase(case_template, case)
