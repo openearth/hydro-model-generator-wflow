@@ -34,49 +34,74 @@ RUN export CPLUS_INCLUDE_PATH=/usr/include/gdal \
     && export C_INCLUDE_PATH=/usr/include/gdal
 
 
-# # Modules and Models
+# # Modules
 # Install hydro-earth
 WORKDIR /
 RUN git clone --recursive 'https://github.com/openearth/hydro-earth' \
     && mv /app/config_private.py /hydro-earth/hydroearth/ && mv /app/config_privatekey.json /hydro-earth/hydroearth/ \
-    && cd hydro-earth && python3 setup.py install && pip3 install -r requirements.txt \
+    && cd hydro-earth \
+	&& pip3 install -r requirements.txt \
+	&& python3 setup.py install \
     && cp /hydro-earth/hydroearth/frontend/api_tasks.yaml /usr/local/lib/python3.6/dist-packages/hydroearth-0.1.0-py3.6.egg/hydroearth/frontend/
 
 # Install hydro-engine
 WORKDIR /app/
 RUN git clone 'https://github.com/openearth/hydro-engine' \
     && cd hydro-engine \
-    && python3 setup.py install
-
-
-# Install wflow
-WORKDIR /app/hydro-model-models/
-RUN git clone 'https://github.com/openstreams/wflow' \
-    && cd wflow && rm -R examples && pip3 install -e .
-
-# Install imod
-WORKDIR /app/hydro-model-models/
-RUN git clone 'https://gitlab.com/deltares/imod/imod-python.git' \
-    && cd imod-python && pip3 install -e .
-
+    && python3 setup.py install \
+	&& rm -rf /app/hydro-engine
 
 # Install hydro-model-builder
 WORKDIR /app/
 RUN git clone -b refactor --single-branch https://github.com/openearth/hydro-model-builder.git \
     && cd hydro-model-builder \
-    && python3 setup.py install
+    && python3 setup.py install \
+	&& rm -rf /app/hydro-model-builder
 
-# Install hydro-model-generator-wflow
+
+# # Models
 WORKDIR /app/
+RUN mkdir hydro-engine \
+ && mkdir hydro-engine/wflow \
+ && mkdir hydro-engine/iMOD \
+ && mkdir hydro-generator \
+ && mkdir hydro-generator/model \
+ && mkdir hydro-generator/yaml \
+ && mkdir hydro-generator/template \
+ && mkdir hydro-generator/config \
+ && mkdir hydro-input \
+ && mkdir hydro-model \
+ && mkdir hydro-output
+
+# Model_01: wflow
+WORKDIR /app/hydro-model/
+RUN git clone 'https://github.com/openstreams/wflow' \
+    && cd wflow && rm -rf examples \
+	&& pip3 install -e .
+#    && python3 setup.py install
+
+# Model_02: iMOD
+WORKDIR /app/hydro-model/
+RUN git clone 'https://gitlab.com/deltares/imod/imod-python.git' \
+    && cd imod-python \
+	&& pip3 install -e .
+#    && python3 setup.py install
+
+# Model_01: hydro-model-generator-wflow
+WORKDIR /app/temp/
 RUN git clone -b app-engine-deploy --single-branch https://github.com/openearth/hydro-model-generator-wflow.git \
-    && cp /app/hydro-model-generator-wflow/hydro_model_generator_wflow/wflow_example.yaml /app/ \
-    && cp -r /app/hydro-model-generator-wflow/hydro_model_generator_wflow/wflow_sbm_template /app/
+    && mv /app/temp/hydro-model-generator-wflow/hydro_model_generator_wflow /app/hydro-generator/model/wflow \
+    && mv /app/hydro-generator/model/wflow/wflow_example.yaml /app/hydro-generator/yaml/wflow.yaml \
+    && mv /app/hydro-generator/model/wflow/wflow_sbm_template /app/hydro-generator/template/
 
-# Install hydro-model-generator-imod
-WORKDIR /app/
+# Model_02: hydro-model-generator-imod
+WORKDIR /app/temp/
 RUN git clone -b app-engine-deploy --single-branch https://github.com/openearth/hydro-model-generator-imod.git \
-    && cp /app/hydro-model-generator-imod/hydro_model_generator_imod/imodflow_onlyHE.yaml /app/
+    && mv /app/temp/hydro-model-generator-imod/hydro_model_generator_imod /app/hydro-generator/model/iMOD \
+    && mv /app/hydro-generator/model/iMOD/imodflow_onlyHE.yaml /app/hydro-generator/yaml/iMOD.yaml
 
+
+# # System Environment
 # Need to copy over private file
 # ENV MODELTYPE wflow
 # ENV MODELTYPE iMOD
@@ -85,13 +110,10 @@ ENV GOOGLE_APPLICATION_CREDENTIALS=/hydro-earth/hydroearth/config_privatekey.jso
 ENV LC_ALL C.UTF-8
 ENV LANG C.UTF-8
 
-RUN rm -rf /usr/bin/python /app/backup /app/hydro-model-builder /app/hydro-engine/* \
-    && ln -s /usr/bin/python3 /usr/bin/python
 
-#     && mkdir generator engine \
-#     && mv /app/hydro-model-generator-wflow/hydro_model_generator_wflow /app/generator/wflow \
-#     && mv /app/hydro-model-generator-imod/hydro_model_generator_imod /app/generator/imod \
-
-
+# # Work Place
 WORKDIR /app/
+RUN rm -rf /app/backup /app/template /usr/bin/python && ln -s /usr/bin/python3 /usr/bin/python
+
+
 CMD [ "psqworker", "hydroearth.tasks.worker.models_queue" ]
