@@ -115,7 +115,11 @@ hydro-engine:
 # region should support either a path or an inline geojson
 # region: koblenz.geojson
 # region: {"type":"Point","coordinates":[-347.79,45.014]}
-region: {"type":"Point","coordinates":[4.37255859375,51.549751017014195]}
+# region: {"type":"Point","coordinates":[4.37255859375,51.549751017014195]}
+#region: {"type":"Point","coordinates":[4.295, 51.822]}
+#region: {"type":"Point","coordinates":[4.408,51.209]}
+region: {"type":"Polygon","coordinates": [[[3.977,51.750],[4.391,51.750],[4.391,52.015],[3.977,52.015],[3.977,51.750]]]}
+#region: {"type":"Polygon","coordinates": [[[4.248,51.139],[4.545, 51.139],[4.545,51.308],[4.248,51.308],[4.248,51.139]]]}
 
 ...
 ---
