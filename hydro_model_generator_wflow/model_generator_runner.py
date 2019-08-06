@@ -1,4 +1,4 @@
-import os
+import os, sys
 import shutil
 import yaml
 import zipfile
@@ -33,11 +33,11 @@ def utm_epsg(region):
     return epsg
 
 
-def get_hydro_data(region, ds):
+def get_hydro_data(region, ds, model_id):
     logging.info(ds["path"] + " \n  \n  " + ds["variable"] + "    ")
+    ds["path"] = os.path.join(Path(ds["path"]).parent, model_id, Path(ds["path"]).name)
+    Path(ds["path"]).parent.mkdir(parents=True, exist_ok=True)
     if ds["function"] == "get-raster" and ds["source"] == "earth-engine":
-        # create directory
-        Path(ds["path"]).parent.mkdir(parents=True, exist_ok=True)
         if ds["crs"].lower() == "utm":
             ds["crs"] = "EPSG:{}".format(utm_epsg(region))
         hydroengine.download_raster(
@@ -56,7 +56,7 @@ def get_hydro_data(region, ds):
         hydroengine.download_rivers(region, ds["path"], filter_upstream_gt, ds["region_filter"], ds["catchment_level"])
 
 
-def general_options(d):
+def general_options(d, model_id):
     # get data from hydro-engine one by one
     defaults = d["hydro-engine"]["defaults"]
     for ds_override in d["hydro-engine"]["datasets"]:
@@ -64,7 +64,7 @@ def general_options(d):
         ds.update(ds_override)
         print("=> general_options.hydro-engine.datasets.variable:", ds["variable"])
         if ds["source"] == "earth-engine":
-            get_hydro_data(d["region"], ds)
+            get_hydro_data(d["region"], ds, model_id)
         else:
             # TODO support non earth-engine datasets
             print("skipped variable:", ds["variable"])
@@ -87,10 +87,10 @@ def zip_model_output(input_dir, output_dir):
     zipf.close()
     return zipf
 
-def delete_output_files(input_dir):
+def delete_output_files(input_dir, model_id):
     shutil.rmtree(input_dir)
     
-    origfolder = "hydro-engine/"
+    origfolder = "/app/hydro-engine/wflow/{}/".format(model_id)
     for item in os.listdir(origfolder):
         if item.endswith(".tif"):
             os.remove(os.path.join(origfolder, item))
@@ -102,30 +102,30 @@ def delete_output_files(input_dir):
             os.remove(os.path.join(origfolder, item))
     # pass
 
-def main():
-    path = 'wflow_example.yaml'
+def main(model_id):
+    path = '/app/hydro-generator/yaml/wflow-{}.yaml'.format(model_id)
     # parse yaml (hydro_model_builder.parse_config)
     dicts = parse_config(path)
     genopt, modopt = dicts
     # get hydro data (hydro_model_builder.general_options)
-    general_options(genopt)
+    general_options(genopt, model_id)
     # run genwf = ModelGeneratorWflow() genwf.generate_model(genopt, modopt)
     genwf = ModelGeneratorWflow()
-    genwf.generate_model(genopt, modopt)
+    genwf.generate_model(genopt, modopt, model_id)
 
     # TODO: add relative paths
-    input_dir = 'wflow_sbm_case'
-    output_dir = 'wflow_sbm_case.zip'
+    input_dir = '/app/hydro-input/wflow_sbm_case-{}'.format(model_id)
+    output_dir = '/app/hydro-input/wflow_sbm_case-{}.zip'.format(model_id)
     # output_dir = "{0}-{1}.zip".format(model['type'], model['id'])
 
     zipped_file = zip_model_output(input_dir, output_dir)
 
     # clean up files not used
-    delete_output_files(input_dir)
+    delete_output_files(input_dir, model_id)
 
 
 # hydro_model_builder needs to specify path where templates are,
 # what file to save output file to,
 
 if __name__ == '__main__':
-    main()
+    main(sys.argv[1])
